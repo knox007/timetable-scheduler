@@ -73,6 +73,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Lecturer.cs" />
+    <Compile Include="Model\Lecture_Hall.cs" />
+    <Compile Include="Model\Lecture_Time.cs" />
+    <Compile Include="Model\Subject.cs" />
+    <Compile Include="Model\Subject_Selection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -97,6 +102,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Control\" />
+    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
