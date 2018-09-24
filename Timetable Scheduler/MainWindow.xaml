@@ -6,14 +6,5 @@
         xmlns:local="clr-namespace:Timetable_Scheduler"
         mc:Ignorable="d"
         Title="Timetable Scheduler" Height="600" Width="800">
-    <Canvas HorizontalAlignment="Left" Height="600" Width="800" Margin="0,0,0,0" VerticalAlignment="Top">
-        <TextBlock Canvas.Left="290" TextWrapping="Wrap" Text="Hello WPF" Canvas.Top="177" Width="189" Height="56" FontSize="72"/>
-        <Button FontWeight="Bold">
-            <WrapPanel>
-                <TextBlock Foreground="Blue">Multi</TextBlock>
-                <TextBlock Foreground="Black">Color</TextBlock>
-                <TextBlock>Button</TextBlock>
-            </WrapPanel>
-        </Button>
-    </Canvas>
+    <Canvas HorizontalAlignment="Left" Height="600" Width="800" Margin="0,0,0,0" VerticalAlignment="Top"/>
 </Window>
