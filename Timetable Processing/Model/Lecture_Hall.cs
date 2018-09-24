@@ -9,8 +9,13 @@ namespace Timetable_Scheduler.Model
     class Lecture_Hall
     {
         public string Building { get; set; }
-        public string Floor { get; set; }
+        public int Floor { get; set; }
         public string Room { get; set; }
         public int Id { get; set; }
+
+        public override string ToString()
+        {
+            return Building + Floor + Room;
+        }
     }
 }

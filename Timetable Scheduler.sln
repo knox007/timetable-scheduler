@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timetable Scheduler", "Timetable Scheduler\Timetable Scheduler.csproj", "{0842F7BA-C454-4F44-8210-05C0CA784AB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timetable Processing", "Timetable Processing\Timetable Processing.csproj", "{5BF3BF5D-906A-4559-8DDF-DBE54CA2D583}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0842F7BA-C454-4F44-8210-05C0CA784AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0842F7BA-C454-4F44-8210-05C0CA784AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0842F7BA-C454-4F44-8210-05C0CA784AB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BF3BF5D-906A-4559-8DDF-DBE54CA2D583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BF3BF5D-906A-4559-8DDF-DBE54CA2D583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BF3BF5D-906A-4559-8DDF-DBE54CA2D583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BF3BF5D-906A-4559-8DDF-DBE54CA2D583}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
