@@ -12,7 +12,7 @@ namespace Timetable_Scheduler.Model
 
         private bool Valid_Period(int period)
         {
-            return (period >= 1 && period <= 12);
+            return (period >= 1 && period <= 15);
         }
 
         private bool In_Range(int period)
