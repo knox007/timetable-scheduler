@@ -17,5 +17,9 @@
             return Id.CompareTo(subject.Id);
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

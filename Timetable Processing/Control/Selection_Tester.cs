@@ -51,10 +51,10 @@ namespace Timetable_Processing.Control
             controller.Selected_Subjects.Add(new Subject(1, "Database"));
             controller.Selected_Subjects.Add(new Subject(2, "Programming Language 2"));
 
-            foreach (List<int> list in controller.Get_Optimized_Selections())
+            foreach (List<Subject_Selection> list in controller.Get_Optimized_Selections())
             {
-                foreach (int i in list)
-                    Console.Write("{0} ", i);
+                foreach (Subject_Selection selection in list)
+                    Console.WriteLine("{0}", selection.ToString());
                 Console.WriteLine();
             }
         }

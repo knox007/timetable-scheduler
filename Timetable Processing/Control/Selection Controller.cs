@@ -96,7 +96,7 @@ namespace Timetable_Processing.Control
             });
         }
 
-        public List<List<int>> Get_Optimized_Selections()
+        public List<List<Subject_Selection>> Get_Optimized_Selections()
         {
             Calculate_Priority();
             Selection_Generator generator = new Selection_Generator(Available_Selecions);

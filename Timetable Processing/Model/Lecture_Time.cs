@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Timetable_Scheduler.Model
 {
@@ -29,6 +30,11 @@ namespace Timetable_Scheduler.Model
         public bool Intersect(Lecture_Time time)
         {
             return In_Range(time.start_period) || In_Range(time.end_period);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} P{1}-P{2}", Day.ToString(), start_period.ToString(), end_period.ToString()).ToString();
         }
     }
 }

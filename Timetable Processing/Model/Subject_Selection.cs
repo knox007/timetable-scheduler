@@ -25,5 +25,22 @@ namespace Timetable_Scheduler.Model
             Times = times;
             Priority = priority;
         }
+
+
+        public static string ListToString<T>(List<T> list)
+        {
+            string result = "[";
+            for (int i = 0; i < list.Count - 1; ++i)
+                result += list[i].ToString() + ", ";
+            result += list[list.Count - 1] + "]";
+            return result;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}, {2}, {3}, {4}",
+                Subject, ListToString(Lecturers), Hall.ToString(),
+                ListToString(Times), Priority.ToString()).ToString();
+        }
     }
 }
