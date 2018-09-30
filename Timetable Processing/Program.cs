@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Timetable_Processing.Control;
 
 namespace Timetable_Processing
 {
@@ -7,7 +8,7 @@ namespace Timetable_Processing
     {
         static void Main(string[] args)
         {
-            
+            Selection_Tester tester = new Selection_Tester();
 
             Console.ReadKey();
         }

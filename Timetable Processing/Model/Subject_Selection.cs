@@ -13,5 +13,17 @@ namespace Timetable_Scheduler.Model
         public Lecture_Hall Hall { get; set; }
         public List<Lecture_Time> Times { get; set; }
         public int Priority { get; set; }
+
+        public Subject_Selection() { }
+        
+        public Subject_Selection(Subject subject, List<Lecturer> lecturers,
+            Lecture_Hall hall, List<Lecture_Time> times, int priority = 0)
+        {
+            Subject = subject;
+            Lecturers = lecturers;
+            Hall = hall;
+            Times = times;
+            Priority = priority;
+        }
     }
 }

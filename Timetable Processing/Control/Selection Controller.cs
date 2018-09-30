@@ -17,6 +17,18 @@ namespace Timetable_Processing.Control
         public List<Lecture_Time> Denied_Lecture_Times { get; set; }
         public bool Halls_Height_Preference { get; set; }
 
+        public Selection_Controller()
+        {
+            All_Selections = new List<Subject_Selection>();
+            Available_Selecions = new List<Subject_Selection>();
+            Selected_Subjects = new List<Subject>();
+            Preferred_Lecturers = new List<Lecturer>();
+            Denied_Lecturers = new List<Lecturer>();
+            Preferred_Lecture_Times = new List<Lecture_Time>();
+            Denied_Lecture_Times = new List<Lecture_Time>();
+            Halls_Height_Preference = false;
+        }
+
         private void Set_Priority_By_Halls_Height_Preference()
         {
             if (!Halls_Height_Preference) //== false
@@ -65,6 +77,8 @@ namespace Timetable_Processing.Control
             foreach (Subject_Selection selection in All_Selections)
                 if (!Selected_Subjects.Exists(subject => subject.Id == selection.Subject.Id))
                     selection.Priority = 0;
+                else
+                    selection.Priority += 1;
         }
 
         private void Calculate_Priority()
@@ -80,17 +94,13 @@ namespace Timetable_Processing.Control
             All_Selections.ForEach(subject => {
                 if (subject.Priority > 0) Available_Selecions.Add(subject);
             });
-            Available_Selecions.Sort((s1, s2) => {
-                return s2.Priority.CompareTo(s1.Priority);
-            });
         }
 
-        public List<Subject_Selection> Get_Optimized_Selections()
+        public List<List<int>> Get_Optimized_Selections()
         {
-            List<Subject_Selection> optimized_selections = new List<Subject_Selection>();
             Calculate_Priority();
-
-            return optimized_selections;
+            Selection_Generator generator = new Selection_Generator(Available_Selecions);
+            return generator.Get_Optimized_Selections();
         }
     }
 }
