@@ -11,12 +11,7 @@
             Id = id;
             Name = name;
         }
-
-        public int CompareTo(Subject subject)
-        {
-            return Id.CompareTo(subject.Id);
-        }
-
+        
         public override string ToString()
         {
             return Name;

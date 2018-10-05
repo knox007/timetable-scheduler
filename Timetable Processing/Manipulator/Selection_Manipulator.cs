@@ -5,10 +5,11 @@ using Timetable_Scheduler.Model;
 
 namespace Timetable_Processing.Control
 {
-    class Selection_Controller
+    class Selection_Manipulator
     {
         public List<Subject_Selection> All_Selections { get; set; }
         private List<Subject_Selection> Available_Selecions { get; set; }
+        public List<Subject_Selection> Preferred_Selections { get; set; }
 
         public List<Subject> Selected_Subjects { get; set; }
         public List<Lecturer> Preferred_Lecturers { get; set; }
@@ -17,10 +18,12 @@ namespace Timetable_Processing.Control
         public List<Lecture_Time> Denied_Lecture_Times { get; set; }
         public bool Halls_Height_Preference { get; set; }
 
-        public Selection_Controller()
+        public Selection_Manipulator()
         {
             All_Selections = new List<Subject_Selection>();
             Available_Selecions = new List<Subject_Selection>();
+            Preferred_Selections = new List<Subject_Selection>();
+
             Selected_Subjects = new List<Subject>();
             Preferred_Lecturers = new List<Lecturer>();
             Denied_Lecturers = new List<Lecturer>();
