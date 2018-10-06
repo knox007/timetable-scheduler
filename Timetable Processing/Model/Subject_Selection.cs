@@ -8,6 +8,7 @@ namespace Timetable_Scheduler.Model
 {
     class Subject_Selection
     {
+        public int Id { get; set; }
         public Subject Subject { get; set; }
         public List<Lecturer> Lecturers { get; set; }
         public Lecture_Hall Hall { get; set; }
