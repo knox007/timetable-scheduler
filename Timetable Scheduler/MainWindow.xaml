@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Title="Timetable Scheduler" Height="600" Width="800">
     <Canvas HorizontalAlignment="Left" Height="600" Width="800" Margin="0,0,0,0" VerticalAlignment="Top">
-        <ComboBox SelectedIndex="0" Width="70" SelectionChanged="ComboBox_SelectionChanged" Canvas.Left="720">
+        <ComboBox SelectedIndex="0" Width="70" Margin="60,0,0,0" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem>English</ComboBoxItem>
             <ComboBoxItem>Vietnamese</ComboBoxItem>
         </ComboBox>
+        <DataGrid Height="147" Canvas.Left="162" Canvas.Top="151" Width="221"/>
     </Canvas>
 </Window>

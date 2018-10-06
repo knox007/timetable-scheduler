@@ -27,7 +27,6 @@ namespace Timetable_Scheduler.Model
             Priority = priority;
         }
 
-
         public static string ListToString<T>(List<T> list)
         {
             string result = "[";
