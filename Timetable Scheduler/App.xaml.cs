@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Timetable_Scheduler
+namespace Timetable_Data
 {
     /// <summary>
     /// Interaction logic for App.xaml
