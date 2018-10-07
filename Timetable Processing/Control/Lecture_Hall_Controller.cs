@@ -6,5 +6,6 @@ namespace Timetable_Processing.Control
 {
     class Lecture_Hall_Controller
     {
+
     }
 }
