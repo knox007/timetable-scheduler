@@ -1,9 +1,32 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
     <RootNamespace>Timetable_Processing</RootNamespace>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Data.Linq" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
 
 </Project>

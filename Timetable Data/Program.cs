@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Timetable_Data.Functions
+namespace Timetable_Data
 {
-    class Data_Crawler
+    class Program
     {
+        static void Main(string[] args)
+        {
+        }
     }
 }

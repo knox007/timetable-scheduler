@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Timetable_Scheduler.Model;
+using Timetable_Data.Model;
 
 namespace Timetable_Processing.Control
 {

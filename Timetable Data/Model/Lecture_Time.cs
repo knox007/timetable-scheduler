@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Timetable_Scheduler.Model
+namespace Timetable_Data.Model
 {
     class Lecture_Time
     {
