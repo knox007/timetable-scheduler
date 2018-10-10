@@ -1,5 +1,8 @@
-﻿namespace Timetable_Data.Model
+﻿using Dapper.Contrib.Extensions;
+
+namespace Timetable_Data.Model
 {
+    [Table("Subject")]
     class Subject
     {
         public int Id { get; set; }
@@ -8,7 +11,6 @@
         public Subject() { }
         public Subject(int id, string name)
         {
-            Id = id;
             Name = name;
         }
         

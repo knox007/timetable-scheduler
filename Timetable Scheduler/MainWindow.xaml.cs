@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Timetable_Data
+namespace Timetable_Scheduler
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

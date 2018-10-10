@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Timetable_Data.Model;
 
-namespace Timetable_Processing.Control
+namespace Timetable_Data.Control
 {
     class Selection_Manipulator
     {

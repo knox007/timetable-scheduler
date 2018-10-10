@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Timetable_Data.Model;
 
-namespace Timetable_Processing.Control
+namespace Timetable_Data.Control
 {
     class Selection_Generator
     {

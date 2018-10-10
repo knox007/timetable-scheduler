@@ -1,32 +1,16 @@
 ﻿using System.Collections.Generic;
+using Dapper.Contrib.Extensions;
 using Timetable_Data.Model;
-using System.Data.Linq;
 using System.Linq;
-using Timetable_Data.Control;
-using Lecture_Hall = Timetable_Data.Model.Lecture_Hall;
 
-namespace Timetable_Processing.Control
+namespace Timetable_Data.Control
 {
-    class Lecture_Hall_Controller
+    class Lecture_Hall_Controller : Base_Controller<Lecture_Hall>
     {
-        public List<Lecture_Hall> Get_All()
+        public override bool Delete(Lecture_Hall t)
         {
-            Database_ClassesDataContext classes = new Database_ClassesDataContext();
-
-            return (from h in classes.Lecture_Halls
-                    select (Lecture_Hall)h).ToList();
-        }
-
-        public void Insert(Lecture_Hall hall)
-        {
-            Database_ClassesDataContext classes = new Database_ClassesDataContext();
-            classes.Lecture_Halls.InsertOnSubmit(hall);
-        }
-
-        public void Delete(Lecture_Hall hall)
-        {
-            Database_ClassesDataContext classes = new Database_ClassesDataContext();
-            classes.Lecture_Halls.DeleteOnSubmit(hall);
+            return Exists_In_Table("Subject_Selection", "Hall_Id", t.Id)
+                ? false : connection.Delete<Lecture_Hall>(t);
         }
     }
 }
