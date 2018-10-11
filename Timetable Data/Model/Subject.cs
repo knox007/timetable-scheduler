@@ -9,7 +9,7 @@ namespace Timetable_Data.Model
         public string Name { get; set; }
 
         public Subject() { }
-        public Subject(int id, string name)
+        public Subject(string name)
         {
             Name = name;
         }

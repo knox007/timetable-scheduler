@@ -6,7 +6,6 @@ namespace Timetable_Data.Model
     [Table("Lecture_Hall")]
     public class Lecture_Hall
     {
-        [Key]
         public int Id { get; set; }
         public string Building { get; set; }
         public int Floor { get; set; }

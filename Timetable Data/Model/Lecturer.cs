@@ -1,5 +1,8 @@
-﻿namespace Timetable_Data.Model
+﻿using Dapper.Contrib.Extensions;
+
+namespace Timetable_Data.Model
 {
+    [Table("Lecturer")]
     class Lecturer
     {
         public int Id { get; set; }

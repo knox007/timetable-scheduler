@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Timetable_Data.Control;
 using Timetable_Data.Model;
+using Dapper;
+using System.Data.SqlClient;
 
 namespace Timetable_Data
 {
@@ -12,9 +14,9 @@ namespace Timetable_Data
     {
         static void Main(string[] args)
         {
-            Subject_Controller sc = new Subject_Controller();
-            sc.Insert(new Subject(1, "Database"));
-            
+            Lecture_Time_Controller ltc = new Lecture_Time_Controller();
+            ltc.Insert(new Lecture_Time(1, "[1:02-03]"));
+
             Console.ReadKey();
         }
     }

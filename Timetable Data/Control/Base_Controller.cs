@@ -19,12 +19,6 @@ namespace Timetable_Data.Control
         public Base_Controller()
         {
             connection = new SqlConnection(connection_string);
-            connection.Open();
-        }
-
-        ~Base_Controller()
-        {
-            connection.Close();
         }
 
         public bool Exists_In_Table(string table_name,
@@ -35,11 +29,11 @@ namespace Timetable_Data.Control
                 "WHERE "+ column_name + " = @Id", new { id });
         }
 
-        public T Get(int Id)
+        public virtual T Get(int Id)
         {
             return connection.Get<T>(Id);
         }
-        public long Insert(T t)
+        public virtual long Insert(T t)
         {
             return connection.Insert<T>(t);
         }
@@ -47,11 +41,11 @@ namespace Timetable_Data.Control
         {
             return connection.Delete<T>(t);
         }
-        public bool Update(T t)
+        public virtual bool Update(T t)
         {
             return connection.Update<T>(t);
         }
-        public List<T> Get_All()
+        public virtual List<T> Get_All()
         {
             return connection.GetAll<T>().ToList();
         }

@@ -56,6 +56,7 @@
     <Compile Include="Control\Lecture_Time_Controller.cs" />
     <Compile Include="Control\Subject_Controller.cs" />
     <Compile Include="Control\Subject_Selection_Controller.cs" />
+    <Compile Include="Control\Test_Controller.cs" />
     <Compile Include="Manipulator\Selection_Generator.cs" />
     <Compile Include="Manipulator\Selection_Manipulator.cs" />
     <Compile Include="Manipulator\Selection_Tester.cs" />
