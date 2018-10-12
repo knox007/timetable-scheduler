@@ -16,6 +16,8 @@ namespace Timetable_Data
         {
             Lecture_Time_Controller ltc = new Lecture_Time_Controller();
             ltc.Insert(new Lecture_Time(1, "[1:02-03]"));
+            Subject_Controller sc = new Subject_Controller();
+            sc.Insert(new Subject("Database"));
 
             Console.ReadKey();
         }

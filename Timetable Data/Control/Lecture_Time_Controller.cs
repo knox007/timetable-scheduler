@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Timetable_Data.Model;
-using Dapper.Contrib.Extensions;
+﻿using Timetable_Data.Model;
 using Dapper;
+using Dapper.Contrib.Extensions;
 
 namespace Timetable_Data.Control
 {

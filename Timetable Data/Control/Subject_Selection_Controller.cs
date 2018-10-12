@@ -24,7 +24,7 @@ namespace Timetable_Data.Control
             foreach (var row in connection.Query("SELECT Lecturer_Id FROM Selection_Lecturer " +
                 "WHERE Selection_Id = @Id", new { Id }).ToList())
                 ss.Lecturers.Add((new Lecturer_Controller().Get(row.Lecturer_Id)));
-
+            
             foreach (var row in connection.Query("SELECT Lecture_Time_Id FROM Selection_Time " +
                 "WHERE Selection_Id = @Id", new { Id }).ToList())
                 ss.Times.Add(new Lecture_Time_Controller().Get(row.Time_Id));
@@ -38,6 +38,11 @@ namespace Timetable_Data.Control
             foreach (var row in connection.Query("SELECT Id FROM Subject_Selection_Id)").ToList())
                 lss.Add(Get(row.Id));
             return lss;
+        }
+
+        public bool Add_Lecturer(ref Subject_Selection ss, Lecturer l)
+        {
+            
         }
     }
 }

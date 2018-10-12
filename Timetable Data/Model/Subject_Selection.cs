@@ -13,11 +13,11 @@ namespace Timetable_Data.Model
         [Computed]
         public Subject Subject { get; set; }
         [Computed]
-        public List<Lecturer> Lecturers { get; set; }
+        protected List<Lecturer> Lecturers { get; set; }
         [Computed]
         public Lecture_Hall Hall { get; set; }
         [Computed]
-        public List<Lecture_Time> Times { get; set; }
+        protected List<Lecture_Time> Times { get; set; }
         [Computed]
         public int Priority { get; set; }
 
