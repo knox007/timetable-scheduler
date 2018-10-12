@@ -9,6 +9,7 @@ namespace Timetable_Data.Control
     {
         public List<Subject_Selection> All_Selections { get; set; }
         private List<Subject_Selection> Available_Selecions { get; set; }
+        
         public List<Subject_Selection> Preferred_Selections { get; set; }
 
         public List<Subject> Selected_Subjects { get; set; }
@@ -17,6 +18,8 @@ namespace Timetable_Data.Control
         public List<Lecture_Time> Preferred_Lecture_Times { get; set; }
         public List<Lecture_Time> Denied_Lecture_Times { get; set; }
         public bool Halls_Height_Preference { get; set; }
+
+        private Selection_Generator Generator { get; set; }
 
         public Selection_Manipulator()
         {
@@ -30,6 +33,8 @@ namespace Timetable_Data.Control
             Preferred_Lecture_Times = new List<Lecture_Time>();
             Denied_Lecture_Times = new List<Lecture_Time>();
             Halls_Height_Preference = false;
+
+            Generator = new Selection_Generator();
         }
 
         private void Set_Priority_By_Halls_Height_Preference()

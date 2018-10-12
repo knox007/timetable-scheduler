@@ -42,7 +42,38 @@ namespace Timetable_Data.Control
 
         public bool Add_Lecturer(ref Subject_Selection ss, Lecturer l)
         {
-            
+            ss.Lecturers.Add(l);
+            return connection.Insert<Selection_Lecturer>(
+                new Selection_Lecturer()
+                    { Lecturer_Id = l.Id, Selection_Id = ss.Id }
+            ) > 0; //insert success
+        }
+
+        public bool Add_Time(ref Subject_Selection ss, Lecture_Time lt)
+        {
+            ss.Times.Add(lt);
+            return connection.Insert<Selection_Time>(
+                new Selection_Time()
+                { Lecture_Time_Id = lt.Id, Selection_Id = ss.Id }
+            ) > 0; //insert success
+        }
+
+        public bool Remove_Lecturer(ref Subject_Selection ss, Lecturer l)
+        {
+            ss.Lecturers.Remove(l);
+            return connection.Delete<Selection_Lecturer>(
+                new Selection_Lecturer()
+                    { Lecturer_Id = l.Id, Selection_Id = ss.Id }
+            ); //insert success
+        }
+
+        public bool Remove_Time(ref Subject_Selection ss, Lecture_Time lt)
+        {
+            ss.Times.Remove(lt);
+            return connection.Delete<Selection_Time>(
+                new Selection_Time()
+                { Lecture_Time_Id = lt.Id, Selection_Id = ss.Id }
+            ); //insert success
         }
     }
 }

@@ -63,6 +63,8 @@
     <Compile Include="Model\Lecturer.cs" />
     <Compile Include="Model\Lecture_Hall.cs" />
     <Compile Include="Model\Lecture_Time.cs" />
+    <Compile Include="Model\Selection_Lecturer.cs" />
+    <Compile Include="Model\Selection_Time.cs" />
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Model\Subject_Selection.cs" />
     <Compile Include="Program.cs" />
