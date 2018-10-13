@@ -60,7 +60,7 @@ namespace Timetable_Data.Model
 
         private bool Valid_Period(int period)
         {
-            return (period >= 1 && period <= 15);
+            return (period >= 1 && period <= 16);
         }
 
         private bool In_Range(int period)

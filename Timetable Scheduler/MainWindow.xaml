@@ -1,8 +1,10 @@
 ﻿<Window x:Class="Timetable_Scheduler.MainWindow"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rg="clr-namespace:unvell.ReoGrid;assembly=unvell.ReoGrid"
         xmlns:local="clr-namespace:Timetable_Scheduler"
         mc:Ignorable="d"
         Title="Timetable Scheduler" Height="600" Width="800">
@@ -11,6 +13,11 @@
             <ComboBoxItem>English</ComboBoxItem>
             <ComboBoxItem>Vietnamese</ComboBoxItem>
         </ComboBox>
-        <DataGrid Height="147" Canvas.Left="162" Canvas.Top="151" Width="221"/>
+        <DataGrid Height="300" Canvas.Left="315" Canvas.Top="165"
+                  Width="427" Name="Time_Table"
+                  xmlns:dataGrid2D="http://gu.se/DataGrid2D"
+                  SelectionUnit="Cell"
+                  dataGrid2D:ItemsSource.Array2D="{Binding Data2D}" />
+
     </Canvas>
 </Window>

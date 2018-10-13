@@ -22,11 +22,11 @@ namespace Timetable_Data.Control
         }
 
         public bool Exists_In_Table(string table_name,
-            string column_name, int id)
+            string column_name, string column_value)
         {
             return connection.ExecuteScalar<bool>
                 ("SELECT COUNT(1) FROM " + table_name +
-                "WHERE "+ column_name + " = @Id", new { id });
+                "WHERE "+ column_name + " = @Id", new { column_value });
         }
 
         public virtual T Get(int Id)

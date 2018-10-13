@@ -10,8 +10,8 @@ namespace Timetable_Data.Control
     {
         public override bool Delete(Subject_Selection t)
         {
-            return (Exists_In_Table("Selection_Lecturer", "Selection_Id", t.Id)
-                || Exists_In_Table("Selection_Time", "Selection_Id", t.Id))
+            return (Exists_In_Table("Selection_Lecturer", "Selection_Id", t.Id.ToString())
+                || Exists_In_Table("Selection_Time", "Selection_Id", t.Id.ToString()))
                 ? false : Delete(t);
         }
 

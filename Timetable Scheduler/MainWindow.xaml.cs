@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Gu.Wpf.DataGrid2D;
 
 namespace Timetable_Scheduler
 {
@@ -20,8 +21,10 @@ namespace Timetable_Scheduler
     /// </summary>
     public partial class MainWindow : Window
     {
+        public int[,] Data2D { get; set; }
         public MainWindow()
         {
+            Data2D = new int[16, 7];
             InitializeComponent();
         }
     }

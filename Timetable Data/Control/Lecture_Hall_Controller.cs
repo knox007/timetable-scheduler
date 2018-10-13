@@ -9,7 +9,7 @@ namespace Timetable_Data.Control
     {
         public override bool Delete(Lecture_Hall t)
         {
-            return Exists_In_Table("Subject_Selection", "Hall_Id", t.Id)
+            return Exists_In_Table("Subject_Selection", "Hall_Id", t.Id.ToString())
                 ? false : connection.Delete<Lecture_Hall>(t);
         }
     }

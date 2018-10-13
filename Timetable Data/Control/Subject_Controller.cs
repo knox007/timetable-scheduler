@@ -11,7 +11,7 @@ namespace Timetable_Data.Control
     {
         public override bool Delete(Subject t)
         {
-            return Exists_In_Table("Subject_Selection", "Subject_Id", t.Id)
+            return Exists_In_Table("Subject_Selection", "Subject_Id", t.Id.ToString())
                 ? false : connection.Delete<Subject>(t);
         }
     }

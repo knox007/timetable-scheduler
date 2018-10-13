@@ -9,8 +9,6 @@ namespace Timetable_Data.Control
     {
         public List<Subject_Selection> All_Selections { get; set; }
         private List<Subject_Selection> Available_Selecions { get; set; }
-        
-        public List<Subject_Selection> Preferred_Selections { get; set; }
 
         public List<Subject> Selected_Subjects { get; set; }
         public List<Lecturer> Preferred_Lecturers { get; set; }
@@ -25,7 +23,6 @@ namespace Timetable_Data.Control
         {
             All_Selections = new List<Subject_Selection>();
             Available_Selecions = new List<Subject_Selection>();
-            Preferred_Selections = new List<Subject_Selection>();
 
             Selected_Subjects = new List<Subject>();
             Preferred_Lecturers = new List<Lecturer>();
@@ -104,11 +101,21 @@ namespace Timetable_Data.Control
             });
         }
 
+        public bool Add_Preferred_Selection(Subject_Selection selection)
+        {
+            return Generator.Add_Preferred_Selection(selection);
+        }
+
+        public void Remove_Preferred_Selection(Subject_Selection selection)
+        {
+            Generator.Remove_Preferred_Selection(selection);
+        }
+
         public List<List<Subject_Selection>> Get_Optimized_Selections()
         {
             Calculate_Priority();
-            Selection_Generator generator = new Selection_Generator(Available_Selecions);
-            return generator.Get_Optimized_Selections();
+            Generator.Available_Selections = Available_Selecions;
+            return Generator.Get_Optimized_Selections();
         }
     }
 }

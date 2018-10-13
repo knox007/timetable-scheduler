@@ -11,7 +11,7 @@ namespace Timetable_Data.Control
     {
         public override bool Delete(Lecturer t)
         {
-            return Exists_In_Table("Selection_Lecturer", "Lecturer_Id", t.Id)
+            return Exists_In_Table("Selection_Lecturer", "Lecturer_Id", t.Id.ToString())
                 ? false : connection.Delete<Lecturer>(t);
         }
     }

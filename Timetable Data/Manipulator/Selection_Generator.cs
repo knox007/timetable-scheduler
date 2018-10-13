@@ -8,16 +8,15 @@ namespace Timetable_Data.Control
     class Selection_Generator
     {
         private int[,] table;
-        // = new bool[7, 17]
-        //7 days of a week, 15 periods
+        // = new int[16, 7]
+        //16 periods each day in week
         public List<Subject_Selection> Available_Selections { get; set; }
-        public List<Subject_Selection> Preferred_Selections { get; set; }
         private List<List<Subject_Selection>> Grouped_Selections, Optimized_Selections;
 
         public Selection_Generator()
         {
             Optimized_Selections = new List<List<Subject_Selection>>();
-            table = new int[7, 17];
+            table = new int[16, 7];
         }
         public Selection_Generator(List<Subject_Selection> Available_Selections)
             : this()
@@ -25,20 +24,21 @@ namespace Timetable_Data.Control
             this.Available_Selections = Available_Selections;
         }
         
-        public bool Add_To_Preferred_Selections(Subject_Selection selection)
+        public bool Add_Preferred_Selection(Subject_Selection selection)
         {
-            if(Add_Selection_To_Table(selection))
-            {
-                return true;
-            }
-            return false;
+            return Add_Selection_To_Table(selection);
         }
 
-        private bool Period_Used(DayOfWeek day, int period)
+        public void Remove_Preferred_Selection(Subject_Selection selection)
+        {
+            Remove_Selection_From_Table(selection);
+        }
+
+        private bool Period_Used(int period, DayOfWeek day)
         {
             return table[(int)day, period] > 0;
         }
-        private void Set_Period(DayOfWeek day, int period, int subject_id)
+        private void Set_Period(int period, DayOfWeek day, int subject_id)
         {
             table[(int)day, period] = subject_id;
         }
@@ -47,9 +47,9 @@ namespace Timetable_Data.Control
         {
             foreach(Lecture_Time time in selection.Times)
                 for (int period = time.Start_Period; period <= time.End_Period; ++period)
-                    if (Period_Used(time.Day, period))
+                    if (Period_Used(period, time.Day))
                         return false;
-                    else Set_Period(time.Day, period, selection.Subject_Id);
+                    else Set_Period(period, time.Day, selection.Subject_Id);
             
             return true;
         }
@@ -59,7 +59,7 @@ namespace Timetable_Data.Control
             foreach (Lecture_Time time in selection.Times)
                 for (int period = time.Start_Period - 1; period < time.End_Period; ++period)
                     if (table[(int)time.Day, period] == selection.Subject_Id)
-                        Set_Period(time.Day, period, 0);
+                        Set_Period(period, time.Day, 0);
         }
 
         private List<Subject_Selection> Int_Array_To_Selection_List(int[] selections)
