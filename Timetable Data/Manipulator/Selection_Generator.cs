@@ -11,11 +11,12 @@ namespace Timetable_Data.Control
         // = new int[16, 7]
         //16 periods each day in week
         public List<Subject_Selection> Available_Selections { get; set; }
-        public List<int> Preferred_Selections_Id;
+        private List<int> Preferred_Selections_Id;
         private List<List<Subject_Selection>> Grouped_Selections, Optimized_Selections;
 
         public Selection_Generator()
         {
+            Preferred_Selections_Id = new List<int>();
             Optimized_Selections = new List<List<Subject_Selection>>();
             table = new int[16, 7];
         }

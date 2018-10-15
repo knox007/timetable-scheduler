@@ -12,17 +12,17 @@ namespace Timetable_Scheduler_Winform
 {
     public partial class Timetable_Control : UserControl
     {
-        public void Init_Table(ref DataGridView Timetable)
+        public void Init_Table(TenTec.Windows.iGridLib.iGrid Timetable)
         {
-            foreach (DayOfWeek d in Enum.GetValues(typeof(DayOfWeek)))
-                Timetable.Columns.Add(new DataGridViewTextBoxColumn
+            /*foreach(DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+                Timetable.Columns.Add(new DataGridViewTextBoxColumn()
                 {
-                    AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                    Resizable = DataGridViewTriState.False,
-                    HeaderText = d.ToString()
+                    HeaderText = day.ToString(),
+                    Name = day.ToString(),
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
                 });
 
-            for (int i = 1; i <= 16; ++i)
+            /*for (int i = 1; i <= 16; ++i)
                 Timetable.Rows.Add(new DataGridViewRow()
                 {
                     Resizable = DataGridViewTriState.False,
@@ -32,16 +32,19 @@ namespace Timetable_Scheduler_Winform
                     }
                 });
             Timetable.RowHeadersWidthSizeMode
-                = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-
+                = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;*/
+            
             Timetable.Dock = DockStyle.Fill;
         }
 
         public Timetable_Control()
         {
             InitializeComponent();
-            Init_Table(ref Timetable);
+            Init_Table(iGrid1);
             Dock = DockStyle.Fill;
+            Timetable.Visible = false;
+            
         }
+        
     }
 }
