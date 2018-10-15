@@ -15,16 +15,6 @@ namespace Timetable_Scheduler_Winform
         public Form1()
         {
             InitializeComponent();
-            dataGridView1.Rows.Add(16);
-        }
-
-        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
-        {
-            
-        }
-
-        private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
         }
     }
 }

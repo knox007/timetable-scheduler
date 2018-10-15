@@ -11,6 +11,7 @@ namespace Timetable_Data.Control
         // = new int[16, 7]
         //16 periods each day in week
         public List<Subject_Selection> Available_Selections { get; set; }
+        public List<int> Preferred_Selections_Id;
         private List<List<Subject_Selection>> Grouped_Selections, Optimized_Selections;
 
         public Selection_Generator()
@@ -26,11 +27,18 @@ namespace Timetable_Data.Control
         
         public bool Add_Preferred_Selection(Subject_Selection selection)
         {
-            return Add_Selection_To_Table(selection);
+            if(Add_Selection_To_Table(selection))
+            {
+                Preferred_Selections_Id.Add(selection.Id);
+                return true;
+            }
+
+            return false;
         }
 
         public void Remove_Preferred_Selection(Subject_Selection selection)
         {
+            Preferred_Selections_Id.Remove(selection.Id);
             Remove_Selection_From_Table(selection);
         }
 
@@ -94,6 +102,12 @@ namespace Timetable_Data.Control
                 .GroupBy(s => s.Subject.Id)
                 .Select(g => g.OrderBy(s => s.Priority).ToList())
                 .ToList();
+
+            for (int i = 0; i < Grouped_Selections.Count; ++i)
+                if ((Grouped_Selections[i].Count > 0) //exists at least one
+                    && (Preferred_Selections_Id.Exists(Id =>
+                        Id == Grouped_Selections[i][0].Subject_Id)))
+                    Grouped_Selections.RemoveAt(i--);
 
             int[] selections = new int[Grouped_Selections.Count];
             Attempt_Selections(selections, 0);
