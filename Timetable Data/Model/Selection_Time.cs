@@ -3,7 +3,7 @@
 namespace Timetable_Data.Model
 {
     [Table("Selection_Time")]
-    class Selection_Time
+    public class Selection_Time
     {
         public int Id { get; set; }
         public int Selection_Id { get; set; }

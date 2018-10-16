@@ -4,7 +4,7 @@ using Dapper.Contrib.Extensions;
 namespace Timetable_Data.Model
 {
     [Table("Subject_Selection")]
-    class Subject_Selection
+    public class Subject_Selection
     {
         public int Id { get; set; }
         public int Subject_Id { get; set; }
@@ -21,7 +21,7 @@ namespace Timetable_Data.Model
         [Computed]
         public int Priority { get; set; }
 
-        public Subject_Selection() : this(new Subject(""), new List<Lecturer>(),
+        public Subject_Selection() : this(new Subject(), new List<Lecturer>(),
             new Lecture_Hall(), new List<Lecture_Time>()) {}
         
         public Subject_Selection(int subject_id, int hall_id)

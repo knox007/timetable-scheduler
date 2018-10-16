@@ -5,7 +5,7 @@ using Dapper.Contrib.Extensions;
 namespace Timetable_Data.Model
 {
     [Table("Lecture_Time")]
-    class Lecture_Time
+    public class Lecture_Time
     {
         private static readonly string regex_format = @"^\[(\d):(\d\d)-(\d\d)\]$";
         //[1:03-04] => Day = Monday, Start_Period = 3, End_Period = 4;

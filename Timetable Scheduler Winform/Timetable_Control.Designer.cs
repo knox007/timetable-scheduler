@@ -28,44 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Timetable = new System.Windows.Forms.DataGridView();
-            this.iGrid1 = new TenTec.Windows.iGridLib.iGrid();
-            ((System.ComponentModel.ISupportInitialize)(this.Timetable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iGrid1)).BeginInit();
+            this.Table = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.Table)).BeginInit();
             this.SuspendLayout();
             // 
-            // Timetable
+            // Table
             // 
-            this.Timetable.AllowUserToAddRows = false;
-            this.Timetable.AllowUserToDeleteRows = false;
-            this.Timetable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Timetable.Location = new System.Drawing.Point(3, 3);
-            this.Timetable.Name = "Timetable";
-            this.Timetable.ReadOnly = true;
-            this.Timetable.Size = new System.Drawing.Size(283, 249);
-            this.Timetable.TabIndex = 0;
-            // 
-            // iGrid1
-            // 
-            this.iGrid1.Header.Height = 18;
-            this.iGrid1.Location = new System.Drawing.Point(0, 0);
-            this.iGrid1.Name = "iGrid1";
-            this.iGrid1.TabIndex = 0;
+            this.Table.AllowUserToAddRows = false;
+            this.Table.AllowUserToDeleteRows = false;
+            this.Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Table.Location = new System.Drawing.Point(0, 0);
+            this.Table.Name = "Table";
+            this.Table.ReadOnly = true;
+            this.Table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.Table.Size = new System.Drawing.Size(319, 268);
+            this.Table.TabIndex = 0;
             // 
             // Timetable_Control
             // 
-            this.Controls.Add(this.Timetable);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Table);
             this.Name = "Timetable_Control";
-            this.Size = new System.Drawing.Size(463, 337);
-            ((System.ComponentModel.ISupportInitialize)(this.Timetable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iGrid1)).EndInit();
+            this.Size = new System.Drawing.Size(319, 268);
+            ((System.ComponentModel.ISupportInitialize)(this.Table)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        
-        private System.Windows.Forms.DataGridView Timetable;
-        private TenTec.Windows.iGridLib.iGrid iGrid1;
+
+        private System.Windows.Forms.DataGridView Table;
     }
 }

@@ -3,15 +3,17 @@
 namespace Timetable_Data.Model
 {
     [Table("Subject")]
-    class Subject
+    public class Subject
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Codename { get; set; }
 
         public Subject() { }
-        public Subject(string name)
+        public Subject(string name, string codename)
         {
             Name = name;
+            Codename = codename;
         }
         
         public override string ToString()

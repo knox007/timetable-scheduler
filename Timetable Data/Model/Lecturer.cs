@@ -3,7 +3,7 @@
 namespace Timetable_Data.Model
 {
     [Table("Lecturer")]
-    class Lecturer
+    public class Lecturer
     {
         public int Id { get; set; }
         public string Name { get; set; }
