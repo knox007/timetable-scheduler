@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About_Box.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About_Box.Designer.cs">
+      <DependentUpon>About_Box.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     <Compile Include="Timetable_Control.Designer.cs">
       <DependentUpon>Timetable_Control.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="About_Box.resx">
+      <DependentUpon>About_Box.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
     </EmbeddedResource>

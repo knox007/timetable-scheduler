@@ -42,16 +42,19 @@
             this.Table.Name = "Table";
             this.Table.ReadOnly = true;
             this.Table.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.Table.Size = new System.Drawing.Size(319, 268);
+            this.Table.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.Table.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.Table.Size = new System.Drawing.Size(479, 358);
             this.Table.TabIndex = 0;
             // 
             // Timetable_Control
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.Table);
             this.Name = "Timetable_Control";
-            this.Size = new System.Drawing.Size(319, 268);
+            this.Size = new System.Drawing.Size(479, 358);
             ((System.ComponentModel.ISupportInitialize)(this.Table)).EndInit();
             this.ResumeLayout(false);
 

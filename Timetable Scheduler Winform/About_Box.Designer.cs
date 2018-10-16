@@ -1,6 +1,6 @@
 ﻿namespace Timetable_Scheduler_Winform
 {
-    partial class Main_Form
+    partial class About_Box
     {
         /// <summary>
         /// Required designer variable.
@@ -10,7 +10,6 @@
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -28,31 +27,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.timetable_Control1 = new Timetable_Scheduler_Winform.Timetable_Control();
             this.SuspendLayout();
             // 
-            // timetable_Control1
-            // 
-            this.timetable_Control1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.timetable_Control1.Location = new System.Drawing.Point(12, 12);
-            this.timetable_Control1.Name = "timetable_Control1";
-            this.timetable_Control1.Size = new System.Drawing.Size(629, 345);
-            this.timetable_Control1.TabIndex = 0;
-            // 
-            // Main_Form
+            // About_Box
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.timetable_Control1);
-            this.Name = "Main_Form";
-            this.Text = "Main_Form";
+            this.ClientSize = new System.Drawing.Size(324, 283);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "About_Box";
+            this.Padding = new System.Windows.Forms.Padding(9);
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "About this program";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Timetable_Control timetable_Control1;
     }
 }

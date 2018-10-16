@@ -20,8 +20,8 @@ namespace Timetable_Scheduler_Winform
                 {
                     CellTemplate = new DataGridViewTextBoxCell() { },
                     HeaderText = day.ToString(),
-                    
-                    Resizable = DataGridViewTriState.False,
+                    Width = 80,
+                    Resizable = DataGridViewTriState.False
                 });
 
             for (int i = 1; i <= 16; ++i)
@@ -29,23 +29,27 @@ namespace Timetable_Scheduler_Winform
                 {
                     Resizable = DataGridViewTriState.False,
                     HeaderCell = new DataGridViewRowHeaderCell()
-                    {   
-                        Value = i.ToString()
-                    }
+                    {
+                        Value = i.ToString(),
+                    },
                 });
 
-            Table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            //Table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode;
             Table.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             Table.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             Table.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            Table.Dock = DockStyle.Fill;
+            Table.AutoSize = true;
         }
 
         public Timetable_Control()
         {
             InitializeComponent();
             Init_Table(Table);
-            Dock = DockStyle.Fill;
+            //AutoSize = true;
+            Width = Table.Width + 4;
+            Height = Table.Height + 4;
+            //Dock = DockStyle.Fill;
         }
 
         public void Add_Subject_Selection(Subject_Selection selection)
@@ -62,6 +66,14 @@ namespace Timetable_Scheduler_Winform
                     if (Table[(int)time.Day, i].Value.ToString()
                         == selection.Subject.Codename)
                         Table[(int)time.Day, i].Value = "";
+        }
+
+        public void Reset_Subject_Selections()
+        {
+            for (int i = 0; i < Table.Columns.Count; ++i)
+                for (int j = 0; j < Table.Rows.Count; ++j)
+                    if (!string.IsNullOrEmpty(Table[i, j].Value.ToString()))
+                        Table[i, j].Value = "";
         }
 
         public void Set_Denied_Lecture_Times()
