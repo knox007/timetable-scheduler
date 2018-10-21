@@ -26,7 +26,7 @@ namespace Timetable_Data.Control
         {
             return connection.ExecuteScalar<bool>
                 ("SELECT COUNT(1) FROM " + table_name +
-                "WHERE "+ column_name + " = @column_value", new { column_value });
+                " WHERE "+ column_name + " = @column_value", new { column_value });
         }
 
         public virtual T Get_By(string table_name,
