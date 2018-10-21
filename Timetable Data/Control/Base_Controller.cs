@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Timetable_Data.Control
 {
-    abstract class Base_Controller<T> where T : class
+    public abstract class Base_Controller<T> where T : class
     {
         private static string connection_string
             = @"Server=.\SQLEXPRESS;Database=Timsh;Integrated Security=SSPI;";
@@ -26,7 +26,14 @@ namespace Timetable_Data.Control
         {
             return connection.ExecuteScalar<bool>
                 ("SELECT COUNT(1) FROM " + table_name +
-                "WHERE "+ column_name + " = @Id", new { column_value });
+                "WHERE "+ column_name + " = @column_value", new { column_value });
+        }
+
+        public virtual T Get_By(string table_name,
+            string column_name, string column_value)
+        {
+            return connection.Query<T>("SELECT * FROM " + table_name +
+                "WHERE " + column_name + " = @Column_Value", new { column_value }).First();
         }
 
         public virtual T Get(int Id)

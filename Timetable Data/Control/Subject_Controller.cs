@@ -7,12 +7,20 @@ using Timetable_Data.Model;
 
 namespace Timetable_Data.Control
 {
-    class Subject_Controller : Base_Controller<Subject>
+    public class Subject_Controller : Base_Controller<Subject>
     {
+        public override long Insert(Subject t)
+        {
+            return Exists_In_Table("[Subject]", "Name", t.Name)
+                ? Get_By("[Subject]", "Name", t.Name).Id
+                : base.Insert(t);
+        }
+
         public override bool Delete(Subject t)
         {
             return Exists_In_Table("Subject_Selection", "Subject_Id", t.Id.ToString())
-                ? false : connection.Delete<Subject>(t);
+                ? false
+                : connection.Delete(t);
         }
     }
 }
