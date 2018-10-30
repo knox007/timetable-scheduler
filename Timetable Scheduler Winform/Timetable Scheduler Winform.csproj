@@ -52,6 +52,12 @@
     <Compile Include="About_Box.Designer.cs">
       <DependentUpon>About_Box.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Control\Lecturer_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\Lecturer_Control.Designer.cs">
+      <DependentUpon>Lecturer_Control.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,10 +78,22 @@
     <Compile Include="Selection_Tree_Control.Designer.cs">
       <DependentUpon>Selection_Tree_Control.cs</DependentUpon>
     </Compile>
-    <Compile Include="Subject_Control.cs">
+    <Compile Include="User Control\Lecture_Hall_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Subject_Control.Designer.cs">
+    <Compile Include="User Control\Lecture_Hall_Control.Designer.cs">
+      <DependentUpon>Lecture_Hall_Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Selector_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\Selector_Control.Designer.cs">
+      <DependentUpon>Selector_Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Subject_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\Subject_Control.Designer.cs">
       <DependentUpon>Subject_Control.cs</DependentUpon>
     </Compile>
     <Compile Include="Subject_Selection_Form.cs">
@@ -84,14 +102,17 @@
     <Compile Include="Subject_Selection_Form.Designer.cs">
       <DependentUpon>Subject_Selection_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Timetable_Control.cs">
+    <Compile Include="User Control\Timetable_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Timetable_Control.Designer.cs">
+    <Compile Include="User Control\Timetable_Control.Designer.cs">
       <DependentUpon>Timetable_Control.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="About_Box.resx">
       <DependentUpon>About_Box.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Lecturer_Control.resx">
+      <DependentUpon>Lecturer_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
@@ -112,13 +133,19 @@
     <EmbeddedResource Include="Selection_Tree_Control.resx">
       <DependentUpon>Selection_Tree_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Subject_Control.resx">
+    <EmbeddedResource Include="User Control\Lecture_Hall_Control.resx">
+      <DependentUpon>Lecture_Hall_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Selector_Control.resx">
+      <DependentUpon>Selector_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Subject_Control.resx">
       <DependentUpon>Subject_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Subject_Selection_Form.resx">
       <DependentUpon>Subject_Selection_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Timetable_Control.resx">
+    <EmbeddedResource Include="User Control\Timetable_Control.resx">
       <DependentUpon>Timetable_Control.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

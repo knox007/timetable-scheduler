@@ -34,7 +34,6 @@ namespace Timetable_Scheduler_Winform
                     },
                 });
 
-
             //Table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode;
             Table.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             Table.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -100,6 +99,29 @@ namespace Timetable_Scheduler_Winform
                         Table[i, j].Style.BackColor = Color.White;
         }
 
-
+        public List<Lecture_Time> Get_Lecture_Times()
+        {
+            List<Lecture_Time> Times = new List<Lecture_Time>();
+            
+            for(int i = 0; i < Table.Columns.Count; ++i)
+            {
+                //List<Lecture_Time> Times_By_Day = new List<Lecture_Time>();
+                int j = 0, k;
+                while(j < Table.Rows.Count)
+                {
+                    if (Table[i, j].Selected)
+                    {
+                        for (k = j; k < Table.Rows.Count; ++k)
+                            if (!Table[i, k].Selected) break;
+                        Times.Add(new Lecture_Time((DayOfWeek)i, j + 1, k));
+                        j = k + 1;
+                    }
+                    else
+                        ++j;
+                }
+            }
+                
+            return Times;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Dapper.Contrib.Extensions;
+using System.ComponentModel;
 
 namespace Timetable_Data.Model
 {
@@ -15,7 +16,7 @@ namespace Timetable_Data.Model
             Name = name;
             Codename = codename;
         }
-        
+
         public override string ToString()
         {
             return Name;

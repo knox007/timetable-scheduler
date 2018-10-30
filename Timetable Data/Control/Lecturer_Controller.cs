@@ -7,7 +7,7 @@ using Dapper.Contrib.Extensions;
 
 namespace Timetable_Data.Control
 {
-    class Lecturer_Controller : Base_Controller<Lecturer>
+    public class Lecturer_Controller : Base_Controller<Lecturer>
     {
         public override long Insert(Lecturer t)
         {

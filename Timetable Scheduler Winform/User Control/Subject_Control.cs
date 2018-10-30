@@ -38,13 +38,11 @@ namespace Timetable_Scheduler_Winform
 
         private bool Selected_Subject_Combobox()
         {
-            if (string.IsNullOrEmpty(Subject_Combobox.Text))
-            {
+            if (Subject_Combobox.SelectedIndex >= 0)
+                return true;
+            else
                 MessageBox.Show("You did not select a subject to do this action!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            return true;
+            return false;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

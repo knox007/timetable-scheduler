@@ -33,7 +33,7 @@ namespace Timetable_Data.Control
             string column_name, string column_value)
         {
             return connection.Query<T>("SELECT * FROM " + table_name +
-                "WHERE " + column_name + " = @Column_Value", new { column_value }).First();
+                " WHERE " + column_name + " = @Column_Value", new { column_value }).First();
         }
 
         public virtual T Get(int Id)

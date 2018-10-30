@@ -36,25 +36,25 @@ namespace Timetable_Data.Model
             Match match = Regex.Match(time, regex_format);
             if (!match.Success) return false; //exit if wrong format
 
-            Day = (DayOfWeek)Int32.Parse(match.Groups[1].ToString());
-            start_period = Int32.Parse(match.Groups[2].ToString());
-            end_period = Int32.Parse(match.Groups[3].ToString());
+            Day = (DayOfWeek)int.Parse(match.Groups[1].ToString());
+            start_period = int.Parse(match.Groups[2].ToString());
+            end_period = int.Parse(match.Groups[3].ToString());
             return true;
         }
         
         public Lecture_Time() { }
-        public Lecture_Time(int id, DayOfWeek day, int start_period, int end_period)
+        public Lecture_Time(DayOfWeek day, int start_period, int end_period)
         {
-            Id = id;
+            //Id = id;
             Day = day;
             Start_Period = start_period;
             End_Period = end_period;
             Time = Time_Numbers_To_Time_String(day, start_period, end_period);
         }
 
-        public Lecture_Time(int id, string time)
+        public Lecture_Time(string time)
         {
-            Id = id;
+            //Id = id;
             Time_String_To_Time_Numbers(time);
         }
 

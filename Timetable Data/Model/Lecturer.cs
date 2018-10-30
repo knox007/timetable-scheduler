@@ -9,9 +9,8 @@ namespace Timetable_Data.Model
         public string Name { get; set; }
 
         public Lecturer() { }
-        public Lecturer(int id, string name)
+        public Lecturer(string name)
         {
-            Id = id;
             Name = name;
         }
 

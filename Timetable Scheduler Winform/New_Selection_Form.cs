@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Timetable_Data.Model;
 
 namespace Timetable_Scheduler_Winform
 {
@@ -15,6 +16,12 @@ namespace Timetable_Scheduler_Winform
         public New_Selection_Form()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<Lecture_Time> L = timetable_Control1.Get_Lecture_Times();
+
         }
     }
 }

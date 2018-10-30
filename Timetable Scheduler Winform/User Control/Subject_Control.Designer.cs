@@ -77,9 +77,9 @@
             // 
             // Codename_Textbox
             // 
-            this.Codename_Textbox.Location = new System.Drawing.Point(93, 41);
+            this.Codename_Textbox.Location = new System.Drawing.Point(73, 41);
             this.Codename_Textbox.Name = "Codename_Textbox";
-            this.Codename_Textbox.Size = new System.Drawing.Size(100, 20);
+            this.Codename_Textbox.Size = new System.Drawing.Size(120, 20);
             this.Codename_Textbox.TabIndex = 4;
             // 
             // label3
@@ -93,9 +93,9 @@
             // 
             // Name_Textbox
             // 
-            this.Name_Textbox.Location = new System.Drawing.Point(93, 14);
+            this.Name_Textbox.Location = new System.Drawing.Point(73, 14);
             this.Name_Textbox.Name = "Name_Textbox";
-            this.Name_Textbox.Size = new System.Drawing.Size(100, 20);
+            this.Name_Textbox.Size = new System.Drawing.Size(120, 20);
             this.Name_Textbox.TabIndex = 2;
             // 
             // label2
@@ -117,7 +117,6 @@
             this.New_Subject_Checkbox.Text = "New subject?";
             this.New_Subject_Checkbox.UseCompatibleTextRendering = true;
             this.New_Subject_Checkbox.UseVisualStyleBackColor = true;
-            this.New_Subject_Checkbox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Subject_Combobox
             // 
