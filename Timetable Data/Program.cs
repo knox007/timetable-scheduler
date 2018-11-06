@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Timetable_Data.Control;
-using Timetable_Data.Model;
+using TimetableData.Control;
+using TimetableData.Model;
 using Dapper;
 using System.Data.SqlClient;
 
-namespace Timetable_Data
+namespace TimetableData
 {
     class Program
     {

@@ -1,6 +1,6 @@
 ﻿using Dapper.Contrib.Extensions;
 
-namespace Timetable_Data.Model
+namespace TimetableData.Model
 {
     [Table("Selection_Time")]
     public class Selection_Time

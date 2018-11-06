@@ -1,8 +1,8 @@
-﻿using Timetable_Data.Model;
+﻿using TimetableData.Model;
 using Dapper;
 using Dapper.Contrib.Extensions;
 
-namespace Timetable_Data.Control
+namespace TimetableData.Control
 {
     class Lecture_Time_Controller : Base_Controller<Lecture_Time>
     {

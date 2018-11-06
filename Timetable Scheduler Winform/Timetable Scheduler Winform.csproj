@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\PropertyChanged.Fody.2.5.13\build\PropertyChanged.Fody.props" Condition="Exists('..\packages\PropertyChanged.Fody.2.5.13\build\PropertyChanged.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PropertyChanged, Version=2.5.13.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\packages\PropertyChanged.Fody.2.5.13\lib\net452\PropertyChanged.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,12 +58,7 @@
     <Compile Include="About_Box.Designer.cs">
       <DependentUpon>About_Box.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Lecturer_Control.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="User Control\Lecturer_Control.Designer.cs">
-      <DependentUpon>Lecturer_Control.cs</DependentUpon>
-    </Compile>
+    <Compile Include="User Control\Generic_Form.cs" />
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,11 +79,17 @@
     <Compile Include="Selection_Tree_Control.Designer.cs">
       <DependentUpon>Selection_Tree_Control.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Lecture_Hall_Control.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="User Control\Lecturer_Form.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User Control\Lecture_Hall_Control.Designer.cs">
-      <DependentUpon>Lecture_Hall_Control.cs</DependentUpon>
+    <Compile Include="User Control\Lecturer_Form.Designer.cs">
+      <DependentUpon>Lecturer_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Lecture_Hall_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Control\Lecture_Hall_Form.Designer.cs">
+      <DependentUpon>Lecture_Hall_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="User Control\Selector_Control.cs">
       <SubType>UserControl</SubType>
@@ -90,17 +97,17 @@
     <Compile Include="User Control\Selector_Control.Designer.cs">
       <DependentUpon>Selector_Control.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Subject_Control.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="User Control\Subject_Control.Designer.cs">
-      <DependentUpon>Subject_Control.cs</DependentUpon>
-    </Compile>
     <Compile Include="Subject_Selection_Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Subject_Selection_Form.Designer.cs">
       <DependentUpon>Subject_Selection_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\SubjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Control\SubjectForm.Designer.cs">
+      <DependentUpon>SubjectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="User Control\Timetable_Control.cs">
       <SubType>UserControl</SubType>
@@ -110,9 +117,6 @@
     </Compile>
     <EmbeddedResource Include="About_Box.resx">
       <DependentUpon>About_Box.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="User Control\Lecturer_Control.resx">
-      <DependentUpon>Lecturer_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
@@ -133,17 +137,20 @@
     <EmbeddedResource Include="Selection_Tree_Control.resx">
       <DependentUpon>Selection_Tree_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Control\Lecture_Hall_Control.resx">
-      <DependentUpon>Lecture_Hall_Control.cs</DependentUpon>
+    <EmbeddedResource Include="User Control\Lecturer_Form.resx">
+      <DependentUpon>Lecturer_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Lecture_Hall_Form.resx">
+      <DependentUpon>Lecture_Hall_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\Selector_Control.resx">
       <DependentUpon>Selector_Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Control\Subject_Control.resx">
-      <DependentUpon>Subject_Control.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Subject_Selection_Form.resx">
       <DependentUpon>Subject_Selection_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\SubjectForm.resx">
+      <DependentUpon>SubjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\Timetable_Control.resx">
       <DependentUpon>Timetable_Control.cs</DependentUpon>
@@ -169,4 +176,12 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Fody.3.2.16\build\Fody.targets" Condition="Exists('..\packages\Fody.3.2.16\build\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.3.2.16\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.3.2.16\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\PropertyChanged.Fody.2.5.13\build\PropertyChanged.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PropertyChanged.Fody.2.5.13\build\PropertyChanged.Fody.props'))" />
+  </Target>
 </Project>

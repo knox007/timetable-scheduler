@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using Dapper.Contrib.Extensions;
-using Timetable_Data.Model;
+using TimetableData.Model;
 using System.Linq;
 
-namespace Timetable_Data.Control
+namespace TimetableData.Control
 {
-    class Lecture_Hall_Controller : Base_Controller<Lecture_Hall>
+    public class LectureHallController : Base_Controller<LectureHall>
     {
-        public override bool Delete(Lecture_Hall t)
+        public override bool Delete(LectureHall t)
         {
             return Exists_In_Table("Subject_Selection", "Hall_Id", t.Id.ToString())
-                ? false : connection.Delete<Lecture_Hall>(t);
+                ? false : connection.Delete<LectureHall>(t);
         }
     }
 }

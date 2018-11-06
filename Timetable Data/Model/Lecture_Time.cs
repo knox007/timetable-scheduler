@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using Dapper.Contrib.Extensions;
 
-namespace Timetable_Data.Model
+namespace TimetableData.Model
 {
     [Table("Lecture_Time")]
     public class Lecture_Time

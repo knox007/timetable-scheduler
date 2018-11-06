@@ -1,7 +1,7 @@
 ﻿using Dapper.Contrib.Extensions;
 using System.ComponentModel;
 
-namespace Timetable_Data.Model
+namespace TimetableData.Model
 {
     [Table("Subject")]
     public class Subject

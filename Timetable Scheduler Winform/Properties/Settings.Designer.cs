@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Timetable_Scheduler_Winform.Properties
+namespace TimetableSchedulerWinform.Properties
 {
 
 

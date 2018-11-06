@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Timetable_Data.Model;
+using TimetableData.Model;
 using Dapper;
 using Dapper.Contrib.Extensions;
 
 
-namespace Timetable_Data.Control
+namespace TimetableData.Control
 {
     public class Lecturer_Controller : Base_Controller<Lecturer>
     {

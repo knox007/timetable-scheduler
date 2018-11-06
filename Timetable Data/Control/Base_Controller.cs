@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Timetable_Data.Control
+namespace TimetableData.Control
 {
-    public abstract class Base_Controller<T> where T : class
+    public class Base_Controller<T> where T : class
     {
         private static string connection_string
             = @"Server=.\SQLEXPRESS;Database=Timsh;Integrated Security=SSPI;";

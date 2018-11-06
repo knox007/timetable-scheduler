@@ -1,10 +1,13 @@
 ﻿using Dapper.Contrib.Extensions;
+using System.ComponentModel;
 
-namespace Timetable_Data.Model
+namespace TimetableData.Model
 {
     [Table("Lecturer")]
-    public class Lecturer
+    public class Lecturer : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public int Id { get; set; }
         public string Name { get; set; }
 

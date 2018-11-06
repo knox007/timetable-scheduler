@@ -1,4 +1,4 @@
-﻿namespace Timetable_Scheduler_Winform
+﻿namespace TimetableSchedulerWinform
 {
     partial class Selection_Tree_Control
     {

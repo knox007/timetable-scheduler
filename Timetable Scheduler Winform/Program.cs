@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TimetableSchedulerWinform.CustomControl;
 
-namespace Timetable_Scheduler_Winform
+namespace TimetableSchedulerWinform
 {
     static class Program
     {
@@ -17,7 +18,7 @@ namespace Timetable_Scheduler_Winform
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main_Form());
-            Application.Run(new New_Selection_Form());
+            Application.Run(new Subject_Selection_Form());
         }
     }
 }

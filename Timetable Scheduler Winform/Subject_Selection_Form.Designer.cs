@@ -1,4 +1,4 @@
-﻿namespace Timetable_Scheduler_Winform
+﻿namespace TimetableSchedulerWinform
 {
     partial class Subject_Selection_Form
     {
@@ -28,16 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.timetable_Control1 = new Timetable_Scheduler_Winform.Timetable_Control();
+            this.SelectorsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.timetable_Control1 = new TimetableSchedulerWinform.Timetable_Control();
             this.SuspendLayout();
+            // 
+            // SelectorsFlowPanel
+            // 
+            this.SelectorsFlowPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SelectorsFlowPanel.Location = new System.Drawing.Point(13, 13);
+            this.SelectorsFlowPanel.Name = "SelectorsFlowPanel";
+            this.SelectorsFlowPanel.Size = new System.Drawing.Size(176, 170);
+            this.SelectorsFlowPanel.TabIndex = 0;
             // 
             // timetable_Control1
             // 
             this.timetable_Control1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.timetable_Control1.Location = new System.Drawing.Point(175, 12);
+            this.timetable_Control1.Location = new System.Drawing.Point(196, 13);
             this.timetable_Control1.Name = "timetable_Control1";
-            this.timetable_Control1.Size = new System.Drawing.Size(632, 346);
-            this.timetable_Control1.TabIndex = 0;
+            this.timetable_Control1.Size = new System.Drawing.Size(633, 346);
+            this.timetable_Control1.TabIndex = 1;
             // 
             // Subject_Selection_Form
             // 
@@ -45,6 +54,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 450);
             this.Controls.Add(this.timetable_Control1);
+            this.Controls.Add(this.SelectorsFlowPanel);
             this.Name = "Subject_Selection_Form";
             this.Text = "Subject_Selection_Form";
             this.ResumeLayout(false);
@@ -53,6 +63,7 @@
 
         #endregion
 
+        private System.Windows.Forms.FlowLayoutPanel SelectorsFlowPanel;
         private Timetable_Control timetable_Control1;
     }
 }

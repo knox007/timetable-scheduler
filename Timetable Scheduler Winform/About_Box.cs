@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Timetable_Scheduler_Winform
+namespace TimetableSchedulerWinform
 {
     partial class About_Box : Form
     {

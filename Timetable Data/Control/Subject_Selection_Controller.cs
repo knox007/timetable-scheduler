@@ -2,9 +2,9 @@
 using Dapper.Contrib.Extensions;
 using Dapper;
 using System.Linq;
-using Timetable_Data.Model;
+using TimetableData.Model;
 
-namespace Timetable_Data.Control
+namespace TimetableData.Control
 {
     class Subject_Selection_Controller : Base_Controller<Subject_Selection>
     {
@@ -18,7 +18,7 @@ namespace Timetable_Data.Control
         public override Subject_Selection Get(int Id)
         {
             Subject_Selection ss = base.Get(Id);
-            ss.Hall = new Lecture_Hall_Controller().Get(ss.Hall_Id);
+            ss.Hall = new LectureHallController().Get(ss.Hall_Id);
             ss.Subject = new Subject_Controller().Get(ss.Subject_Id);
 
             foreach (var row in connection.Query("SELECT Lecturer_Id FROM Selection_Lecturer " +

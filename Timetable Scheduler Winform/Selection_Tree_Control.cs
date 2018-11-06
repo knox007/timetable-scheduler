@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Timetable_Scheduler_Winform
+namespace TimetableSchedulerWinform
 {
     public partial class Selection_Tree_Control : UserControl
     {

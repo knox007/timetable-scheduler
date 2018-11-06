@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Dapper.Contrib.Extensions;
 
-namespace Timetable_Data.Model
+namespace TimetableData.Model
 {
     [Table("Subject_Selection")]
     public class Subject_Selection
@@ -15,14 +15,14 @@ namespace Timetable_Data.Model
         [Computed]
         public List<Lecturer> Lecturers { get; set; }
         [Computed]
-        public Lecture_Hall Hall { get; set; }
+        public LectureHall Hall { get; set; }
         [Computed]
         public List<Lecture_Time> Times { get; set; }
         [Computed]
         public int Priority { get; set; }
 
         public Subject_Selection() : this(new Subject(), new List<Lecturer>(),
-            new Lecture_Hall(), new List<Lecture_Time>()) {}
+            new LectureHall(), new List<Lecture_Time>()) {}
         
         public Subject_Selection(int subject_id, int hall_id)
         {
@@ -31,7 +31,7 @@ namespace Timetable_Data.Model
         }
 
         public Subject_Selection(Subject subject, List<Lecturer> lecturers,
-            Lecture_Hall hall, List<Lecture_Time> times, int priority = 0)
+            LectureHall hall, List<Lecture_Time> times, int priority = 0)
         {
             Subject = subject;
             Lecturers = lecturers;

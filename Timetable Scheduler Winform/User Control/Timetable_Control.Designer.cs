@@ -1,4 +1,4 @@
-﻿namespace Timetable_Scheduler_Winform
+﻿namespace TimetableSchedulerWinform
 {
     partial class Timetable_Control
     {

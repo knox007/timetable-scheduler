@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Timetable_Data.Model;
+using TimetableData.Model;
 
-namespace Timetable_Data.Control
+namespace TimetableData.Control
 {
     class Selection_Generator
     {

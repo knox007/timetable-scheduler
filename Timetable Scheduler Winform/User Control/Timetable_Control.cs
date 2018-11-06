@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Timetable_Data.Model;
+using TimetableData.Model;
 
-namespace Timetable_Scheduler_Winform
+namespace TimetableSchedulerWinform
 {
     public partial class Timetable_Control : UserControl
     {

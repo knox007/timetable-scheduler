@@ -1,4 +1,4 @@
-﻿namespace Timetable_Scheduler_Winform
+﻿namespace TimetableSchedulerWinform
 {
     partial class About_Box
     {

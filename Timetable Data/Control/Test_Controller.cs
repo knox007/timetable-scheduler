@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Timetable_Data.Control
+namespace TimetableData.Control
 {
     class Test_Controller : Subject_Controller
     {
