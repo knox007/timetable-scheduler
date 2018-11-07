@@ -10,23 +10,23 @@ namespace TimetableData.Control
         private int[,] table;
         // = new int[16, 7]
         //16 periods each day in week
-        public List<Subject_Selection> Available_Selections { get; set; }
+        public List<SubjectSelection> Available_Selections { get; set; }
         private List<int> Preferred_Selections_Id;
-        private List<List<Subject_Selection>> Grouped_Selections, Optimized_Selections;
+        private List<List<SubjectSelection>> Grouped_Selections, Optimized_Selections;
 
         public Selection_Generator()
         {
             Preferred_Selections_Id = new List<int>();
-            Optimized_Selections = new List<List<Subject_Selection>>();
+            Optimized_Selections = new List<List<SubjectSelection>>();
             table = new int[16, 7];
         }
-        public Selection_Generator(List<Subject_Selection> Available_Selections)
+        public Selection_Generator(List<SubjectSelection> Available_Selections)
             : this()
         {
             this.Available_Selections = Available_Selections;
         }
         
-        public bool Add_Preferred_Selection(Subject_Selection selection)
+        public bool Add_Preferred_Selection(SubjectSelection selection)
         {
             if(Add_Selection_To_Table(selection))
             {
@@ -37,7 +37,7 @@ namespace TimetableData.Control
             return false;
         }
 
-        public void Remove_Preferred_Selection(Subject_Selection selection)
+        public void Remove_Preferred_Selection(SubjectSelection selection)
         {
             Preferred_Selections_Id.Remove(selection.Id);
             Remove_Selection_From_Table(selection);
@@ -52,28 +52,28 @@ namespace TimetableData.Control
             table[(int)day, period] = subject_id;
         }
 
-        private bool Add_Selection_To_Table(Subject_Selection selection)
+        private bool Add_Selection_To_Table(SubjectSelection selection)
         {
-            foreach(Lecture_Time time in selection.Times)
+            foreach(LectureTime time in selection.Times)
                 for (int period = time.Start_Period; period <= time.End_Period; ++period)
                     if (Period_Used(period, time.Day))
                         return false;
-                    else Set_Period(period, time.Day, selection.Subject_Id);
+                    else Set_Period(period, time.Day, selection.SubjectId);
             
             return true;
         }
 
-        private void Remove_Selection_From_Table(Subject_Selection selection)
+        private void Remove_Selection_From_Table(SubjectSelection selection)
         {
-            foreach (Lecture_Time time in selection.Times)
+            foreach (LectureTime time in selection.Times)
                 for (int period = time.Start_Period - 1; period < time.End_Period; ++period)
-                    if (table[(int)time.Day, period] == selection.Subject_Id)
+                    if (table[(int)time.Day, period] == selection.SubjectId)
                         Set_Period(period, time.Day, 0);
         }
 
-        private List<Subject_Selection> Int_Array_To_Selection_List(int[] selections)
+        private List<SubjectSelection> Int_Array_To_Selection_List(int[] selections)
         {
-            List<Subject_Selection> result = new List<Subject_Selection>();
+            List<SubjectSelection> result = new List<SubjectSelection>();
             for (int i = 0; i < selections.Length; ++i)
                 result.Add(Grouped_Selections[i][selections[i]]);
             return result;
@@ -97,7 +97,7 @@ namespace TimetableData.Control
                     
         }
 
-        public List<List<Subject_Selection>> Get_Optimized_Selections()
+        public List<List<SubjectSelection>> Get_Optimized_Selections()
         {
             Grouped_Selections = Available_Selections
                 .GroupBy(s => s.Subject.Id)
@@ -107,7 +107,7 @@ namespace TimetableData.Control
             for (int i = 0; i < Grouped_Selections.Count; ++i)
                 if ((Grouped_Selections[i].Count > 0) //exists at least one
                     && (Preferred_Selections_Id.Exists(Id =>
-                        Id == Grouped_Selections[i][0].Subject_Id)))
+                        Id == Grouped_Selections[i][0].SubjectId)))
                     Grouped_Selections.RemoveAt(i--);
 
             int[] selections = new int[Grouped_Selections.Count];

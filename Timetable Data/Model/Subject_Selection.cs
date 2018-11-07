@@ -1,43 +1,63 @@
 ﻿using System.Collections.Generic;
 using Dapper.Contrib.Extensions;
+using TimetableData.Control;
 
 namespace TimetableData.Model
 {
     [Table("Subject_Selection")]
-    public class Subject_Selection
+    public class SubjectSelection
     {
         public int Id { get; set; }
-        public int Subject_Id { get; set; }
-        public int Hall_Id { get; set; }
+        public int SubjectId { get; set; }
+        public int HallId { get; set; }
 
         [Computed]
-        public Subject Subject { get; set; }
+        public Subject Subject
+        {
+            get
+            {
+                return new SubjectController().Get(SubjectId);
+            }
+        }
+
         [Computed]
-        public List<Lecturer> Lecturers { get; set; }
+        public LectureHall Hall
+        {
+            get
+            {
+                return new LectureHallController().Get(HallId);
+            }
+        }
+
         [Computed]
-        public LectureHall Hall { get; set; }
+        public List<Lecturer> Lecturers
+        {
+            get
+            {
+                return new LecturerController().GetBySelection(this);
+            }
+        }
+
         [Computed]
-        public List<Lecture_Time> Times { get; set; }
+        public List<LectureTime> Times
+        {
+            get
+            {
+                return new Lecture_Time_Controller().GetBySelection(this);
+            }
+        }
+
         [Computed]
         public int Priority { get; set; }
 
-        public Subject_Selection() : this(new Subject(), new List<Lecturer>(),
-            new LectureHall(), new List<Lecture_Time>()) {}
-        
-        public Subject_Selection(int subject_id, int hall_id)
+        public SubjectSelection()
         {
-            Subject_Id = subject_id;
-            Hall_Id = hall_id;
         }
-
-        public Subject_Selection(Subject subject, List<Lecturer> lecturers,
-            LectureHall hall, List<Lecture_Time> times, int priority = 0)
+        
+        public SubjectSelection(int subject_id, int hall_id)
         {
-            Subject = subject;
-            Lecturers = lecturers;
-            Hall = hall;
-            Times = times;
-            Priority = priority;
+            SubjectId = subject_id;
+            HallId = hall_id;
         }
 
         public static string ListToString<T>(List<T> list)
@@ -57,8 +77,8 @@ namespace TimetableData.Model
         public override string ToString()
         {
             return string.Format("{0}, {1}, {2}, {3}, {4}",
-                Subject, ListToString(Lecturers), Hall.ToString(),
-                ListToString(Times), Priority.ToString()).ToString();
+                Subject, ListToString(Lecturers), Hall,
+                ListToString(Times), Priority.ToString());
         }
     }
 }

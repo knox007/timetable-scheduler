@@ -11,7 +11,7 @@ using TimetableData.Model;
 
 namespace TimetableSchedulerWinform
 {
-    public partial class Timetable_Control : UserControl
+    public partial class TableCustomControl : UserControl
     {
         public void Init_Table(DataGridView Table)
         {
@@ -41,7 +41,7 @@ namespace TimetableSchedulerWinform
             Table.AutoSize = true;
         }
 
-        public Timetable_Control()
+        public TableCustomControl()
         {
             InitializeComponent();
             Init_Table(Table);
@@ -51,16 +51,23 @@ namespace TimetableSchedulerWinform
             //Dock = DockStyle.Fill;
         }
 
-        public void Add_Subject_Selection(Subject_Selection selection)
+        public void AddSubjectAndTimes(Subject subject, List<LectureTime> times)
         {
-            foreach(Lecture_Time time in selection.Times)
+            foreach (LectureTime time in times)
                 for (int i = time.Start_Period; i <= time.End_Period; ++i)
-                    Table[(int)time.Day, i].Value = selection.Subject.Codename;
+                    Table[(int)time.Day, i - 1].Value = subject.Codename;
         }
 
-        public void Remove_Subject_Selection(Subject_Selection selection)
+        public void Add_Subject_Selection(SubjectSelection selection)
         {
-            foreach (Lecture_Time time in selection.Times)
+            foreach(LectureTime time in selection.Times)
+                for (int i = time.Start_Period; i <= time.End_Period; ++i)
+                    Table[(int)time.Day, i - 1].Value = selection.Subject.Codename;
+        }
+
+        public void Remove_Subject_Selection(SubjectSelection selection)
+        {
+            foreach (LectureTime time in selection.Times)
                 for (int i = time.Start_Period; i <= time.End_Period; ++i)
                     if (Table[(int)time.Day, i].Value.ToString()
                         == selection.Subject.Codename)
@@ -91,17 +98,22 @@ namespace TimetableSchedulerWinform
                         Table[i, j].Style.BackColor = Color.Green;
         }
 
-        public void Reset_Lecture_Times()
+        public void ResetLectureTimes()
         {
             for (int i = 0; i < Table.Columns.Count; ++i)
                 for (int j = 0; j < Table.Rows.Count; ++j)
+                {
                     if (Table[i, j].Style.BackColor != DefaultBackColor)
                         Table[i, j].Style.BackColor = Color.White;
+                    Table[i, j].Value = "";
+                }
+                    
+                    
         }
 
-        public List<Lecture_Time> Get_Lecture_Times()
+        public List<LectureTime> GetLectureTimes()
         {
-            List<Lecture_Time> Times = new List<Lecture_Time>();
+            List<LectureTime> Times = new List<LectureTime>();
             
             for(int i = 0; i < Table.Columns.Count; ++i)
             {
@@ -112,8 +124,9 @@ namespace TimetableSchedulerWinform
                     if (Table[i, j].Selected)
                     {
                         for (k = j; k < Table.Rows.Count; ++k)
-                            if (!Table[i, k].Selected) break;
-                        Times.Add(new Lecture_Time((DayOfWeek)i, j + 1, k));
+                            if (!Table[i, k].Selected)
+                                break;
+                        Times.Add(new LectureTime((DayOfWeek)i, j + 1, k));
                         j = k + 1;
                     }
                     else

@@ -12,9 +12,9 @@ using TimetableData.Model;
 
 namespace TimetableSchedulerWinform.CustomControl
 {
-    public partial class Lecturer_Form : Form, GenericForm<Lecturer>
+    public partial class LecturerForm : Form, GenericForm<Lecturer>
     {
-        private Lecturer_Controller controller;
+        private LecturerController controller;
         private Lecturer lecturer, deep_copy;
         private List<Lecturer> inserted_lecturers;
         private bool new_value, updated, deleted;
@@ -38,21 +38,21 @@ namespace TimetableSchedulerWinform.CustomControl
             }
         }
 
-        public Lecturer_Form(Lecturer lecturer)
+        public LecturerForm(Lecturer lecturer)
         {
             InitializeComponent();
             
             SetModel(lecturer);
-            controller = new Lecturer_Controller();
+            controller = new LecturerController();
             inserted_lecturers = new List<Lecturer>();
             
             updated = false;
             deleted = false;
 
-            FormClosed += Check_On_Closed;
+            FormClosed += CheckOnClosed;
         }
 
-        private void Check_On_Closed(object sender, FormClosedEventArgs e)
+        private void CheckOnClosed(object sender, FormClosedEventArgs e)
         {
             if(!updated && //not updated
                 !deleted && //not deleted
@@ -62,7 +62,7 @@ namespace TimetableSchedulerWinform.CustomControl
             }
         }
 
-        public Lecturer_Form() : this(new Lecturer())
+        public LecturerForm() : this(new Lecturer())
         {
             
         }
@@ -108,10 +108,13 @@ namespace TimetableSchedulerWinform.CustomControl
             if (MessageBox.Show("Do you really want to delete this?",
                 "Warning!", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                return (deleted = controller.Delete(lecturer));
+                deleted = controller.Delete(lecturer);
+                if (!deleted)
+                    MessageBox.Show(this, "The lecturer is being used somewhere else!",
+                        "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return false;
+            return deleted;
         }
 
         public bool UpdateModel()

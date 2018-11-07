@@ -15,14 +15,14 @@ namespace TimetableSchedulerWinform.CustomControl
     {
         private CustomForm form;
         private Model model;
-        private Base_Controller<Model> controller;
+        private BaseController<Model> controller;
         private BindingList<Model> all_models;
 
         public SelectorControl()
         {
             InitializeComponent();
             model = new Model();
-            controller = new Base_Controller<Model>();
+            controller = new BaseController<Model>();
             SelectWhatLabel.Text = String.Format("Select {0}", model.GetType().Name);
             SelectWhatLabel.BringToFront();
             all_models = new BindingList<Model>(controller.Get_All());
@@ -68,7 +68,11 @@ namespace TimetableSchedulerWinform.CustomControl
             else
                 MessageBox.Show(this, "You have not selected an item!", "Error!",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-            
+        }
+
+        public Model GetModel()
+        {
+            return (Model)Models_Combobox.SelectedItem;
         }
     }
 }

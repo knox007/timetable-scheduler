@@ -5,7 +5,7 @@ using Dapper.Contrib.Extensions;
 namespace TimetableData.Model
 {
     [Table("Lecture_Time")]
-    public class Lecture_Time
+    public class LectureTime
     {
         private static readonly string regex_format = @"^\[(\d):(\d\d)-(\d\d)\]$";
         //[1:03-04] => Day = Monday, Start_Period = 3, End_Period = 4;
@@ -42,8 +42,8 @@ namespace TimetableData.Model
             return true;
         }
         
-        public Lecture_Time() { }
-        public Lecture_Time(DayOfWeek day, int start_period, int end_period)
+        public LectureTime() { }
+        public LectureTime(DayOfWeek day, int start_period, int end_period)
         {
             //Id = id;
             Day = day;
@@ -52,7 +52,7 @@ namespace TimetableData.Model
             Time = Time_Numbers_To_Time_String(day, start_period, end_period);
         }
 
-        public Lecture_Time(string time)
+        public LectureTime(string time)
         {
             //Id = id;
             Time_String_To_Time_Numbers(time);
@@ -67,7 +67,7 @@ namespace TimetableData.Model
         {
             return start_period < period && period < end_period;
         }
-        public bool Intersect(Lecture_Time time)
+        public bool Intersect(LectureTime time)
         {
             return In_Range(time.start_period) || In_Range(time.end_period);
         }

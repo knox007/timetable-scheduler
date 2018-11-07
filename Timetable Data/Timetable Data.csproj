@@ -60,6 +60,7 @@
     <Compile Include="Control\Lecturer_Controller.cs" />
     <Compile Include="Control\Lecture_Hall_Controller.cs" />
     <Compile Include="Control\Lecture_Time_Controller.cs" />
+    <Compile Include="Control\Selection_TimeController.cs" />
     <Compile Include="Control\Subject_Controller.cs" />
     <Compile Include="Control\Subject_Selection_Controller.cs" />
     <Compile Include="Control\Test_Controller.cs" />

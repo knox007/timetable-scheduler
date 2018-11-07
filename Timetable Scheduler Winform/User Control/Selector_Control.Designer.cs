@@ -50,9 +50,9 @@
             // Models_Combobox
             // 
             this.Models_Combobox.FormattingEnabled = true;
-            this.Models_Combobox.Location = new System.Drawing.Point(38, 11);
+            this.Models_Combobox.Location = new System.Drawing.Point(6, 11);
             this.Models_Combobox.Name = "Models_Combobox";
-            this.Models_Combobox.Size = new System.Drawing.Size(121, 21);
+            this.Models_Combobox.Size = new System.Drawing.Size(153, 21);
             this.Models_Combobox.TabIndex = 1;
             // 
             // New_Button

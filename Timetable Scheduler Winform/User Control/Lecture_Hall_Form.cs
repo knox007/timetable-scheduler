@@ -49,7 +49,19 @@ namespace TimetableSchedulerWinform.CustomControl
             FloorNumericUpdown.Maximum = 100;
             FloorNumericUpdown.Minimum = 0;
 
-            New = true;
+            FormClosed += CheckOnClosed;
+        }
+
+        private void CheckOnClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!updated && //not updated
+                !deleted && //not deleted
+                inserted_halls.Count == 0) //not inserted
+            {
+                hall.Building = deep_copy.Building;
+                hall.Floor = deep_copy.Floor;
+                hall.Room = deep_copy.Room;
+            }
         }
 
         private bool updated;
@@ -91,21 +103,16 @@ namespace TimetableSchedulerWinform.CustomControl
 
         public void SetModel(LectureHall model)
         {
-            if(model.Id > 0)
+            New = (model.Id == 0);
+
+            deep_copy = new LectureHall()
             {
-                New = false;
-            }
-            else
-            {
-                New = true;
-                deep_copy = new LectureHall()
-                {
-                    Id = model.Id,
-                    Building = model.Building,
-                    Floor = model.Floor,
-                    Room = model.Room
-                };
-            }
+                Id = model.Id,
+                Building = model.Building,
+                Floor = model.Floor,
+                Room = model.Room
+            };
+
             hall = model;
 
             BuildingTextbox.DataBindings.Clear();
@@ -123,8 +130,19 @@ namespace TimetableSchedulerWinform.CustomControl
         public bool UpdateModel()
         {
             if(updated = controller.Update(hall))
+            {
                 MessageBox.Show(this, "The lecturer has been updated.", "Caption",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                updated = false;
+                deep_copy = new LectureHall()
+                {
+                    Id = hall.Id,
+                    Building = hall.Building,
+                    Floor = hall.Floor,
+                    Room = hall.Room
+                };
+            }
+                
 
             return updated;
         }

@@ -79,6 +79,12 @@
     <Compile Include="Selection_Tree_Control.Designer.cs">
       <DependentUpon>Selection_Tree_Control.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Control\LecturerUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\LecturerUserControl.Designer.cs">
+      <DependentUpon>LecturerUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Control\Lecturer_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     </Compile>
     <EmbeddedResource Include="Selection_Tree_Control.resx">
       <DependentUpon>Selection_Tree_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\LecturerUserControl.resx">
+      <DependentUpon>LecturerUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\Lecturer_Form.resx">
       <DependentUpon>Lecturer_Form.cs</DependentUpon>

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.timetable_Control2 = new TimetableSchedulerWinform.Timetable_Control();
+            this.timetable_Control2 = new TimetableSchedulerWinform.TableCustomControl();
             this.SuspendLayout();
             // 
             // timetable_Control2
@@ -53,7 +53,7 @@
 
         #endregion
 
-        private Timetable_Control timetable_Control1;
-        private Timetable_Control timetable_Control2;
+        private TableCustomControl timetable_Control1;
+        private TableCustomControl timetable_Control2;
     }
 }

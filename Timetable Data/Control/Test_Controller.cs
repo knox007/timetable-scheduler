@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimetableData.Control
 {
-    class Test_Controller : Subject_Controller
+    class Test_Controller : SubjectController
     {
         public void Run()
         {

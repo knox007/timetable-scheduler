@@ -7,7 +7,7 @@ using TimetableData.Model;
 
 namespace TimetableData.Control
 {
-    public class Subject_Controller : Base_Controller<Subject>
+    public class SubjectController : BaseController<Subject>
     {
         public override long Insert(Subject t)
         {

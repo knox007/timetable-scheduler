@@ -4,8 +4,10 @@ using System.ComponentModel;
 namespace TimetableData.Model
 {
     [Table("Subject")]
-    public class Subject
+    public class Subject : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Codename { get; set; }

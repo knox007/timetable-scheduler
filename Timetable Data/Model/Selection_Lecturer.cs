@@ -1,4 +1,6 @@
 ﻿using Dapper.Contrib.Extensions;
+using System.Collections.Generic;
+using TimetableData.Control;
 
 namespace TimetableData.Model
 {
@@ -8,5 +10,6 @@ namespace TimetableData.Model
         public int Id { get; set; }
         public int Selection_Id { get; set; }
         public int Lecturer_Id { get; set; }
+        
     }
 }

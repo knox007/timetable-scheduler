@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace TimetableData.Control
 {
-    public class Base_Controller<T> where T : class
+    public class BaseController<T> where T : class
     {
         private static string connection_string
             = @"Server=.\SQLEXPRESS;Database=Timsh;Integrated Security=SSPI;";
         protected IDbConnection connection = null;
         
-        public Base_Controller()
+        public BaseController()
         {
             connection = new SqlConnection(connection_string);
         }

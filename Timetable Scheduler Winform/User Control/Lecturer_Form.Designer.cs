@@ -1,6 +1,6 @@
 ﻿namespace TimetableSchedulerWinform.CustomControl
 {
-    partial class Lecturer_Form
+    partial class LecturerForm
     {
         /// <summary>
         /// Required designer variable.
