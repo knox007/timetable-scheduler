@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TimetableSchedulerWinform.CustomControl;
 
 namespace TimetableSchedulerWinform
 {
@@ -17,8 +16,7 @@ namespace TimetableSchedulerWinform
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Main_Form());
-            Application.Run(new Subject_Selection_Form());
+            Application.Run(new MainForm());
         }
     }
 }

@@ -19,6 +19,14 @@ namespace TimetableData.Model
             Codename = codename;
         }
 
+        //deep copy constructor
+        public Subject(Subject subject)
+        {
+            Id = subject.Id;
+            Name = subject.Name;
+            Codename = subject.Codename;
+        }
+
         public override string ToString()
         {
             return Name;

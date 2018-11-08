@@ -1,11 +1,11 @@
 ﻿using Dapper.Contrib.Extensions;
 using System.Collections.Generic;
-using TimetableData.Control;
+using TimetableData.Controller;
 
 namespace TimetableData.Model
 {
-    [Table("Selection_Lecturer")]
-    public class Selection_Lecturer
+    [Table("SelectionLecturer")]
+    public class SelectionLecturer
     {
         public int Id { get; set; }
         public int Selection_Id { get; set; }

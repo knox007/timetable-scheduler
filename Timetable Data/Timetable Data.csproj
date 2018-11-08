@@ -42,6 +42,9 @@
     <Reference Include="Dapper.Contrib, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.Contrib.1.50.5\lib\net451\Dapper.Contrib.dll</HintPath>
     </Reference>
+    <Reference Include="FastMember.Signed, Version=1.4.1.0, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.Signed.1.4.1\lib\net461\FastMember.Signed.dll</HintPath>
+    </Reference>
     <Reference Include="PropertyChanged, Version=2.5.13.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.2.5.13\lib\net452\PropertyChanged.dll</HintPath>
     </Reference>
@@ -56,24 +59,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Control\Base_Controller.cs" />
-    <Compile Include="Control\Lecturer_Controller.cs" />
-    <Compile Include="Control\Lecture_Hall_Controller.cs" />
-    <Compile Include="Control\Lecture_Time_Controller.cs" />
-    <Compile Include="Control\Selection_TimeController.cs" />
-    <Compile Include="Control\Subject_Controller.cs" />
-    <Compile Include="Control\Subject_Selection_Controller.cs" />
-    <Compile Include="Control\Test_Controller.cs" />
-    <Compile Include="Manipulator\Selection_Generator.cs" />
-    <Compile Include="Manipulator\Selection_Manipulator.cs" />
-    <Compile Include="Manipulator\Selection_Tester.cs" />
+    <Compile Include="Controller\BaseController.cs" />
+    <Compile Include="Controller\LecturerController.cs" />
+    <Compile Include="Controller\LectureHallController.cs" />
+    <Compile Include="Controller\LectureTimeController.cs" />
+    <Compile Include="Controller\SubjectController.cs" />
+    <Compile Include="Controller\SubjectSelectionController.cs" />
+    <Compile Include="Controller\TestController.cs" />
+    <Compile Include="Manipulator\SelectionGenerator.cs" />
+    <Compile Include="Manipulator\SelectionManipulator.cs" />
+    <Compile Include="Manipulator\SelectionTester.cs" />
     <Compile Include="Model\Lecturer.cs" />
-    <Compile Include="Model\Lecture_Hall.cs" />
-    <Compile Include="Model\Lecture_Time.cs" />
+    <Compile Include="Model\LectureHall.cs" />
+    <Compile Include="Model\LectureTime.cs" />
     <Compile Include="Model\Selection_Lecturer.cs" />
     <Compile Include="Model\Selection_Time.cs" />
     <Compile Include="Model\Subject.cs" />
-    <Compile Include="Model\Subject_Selection.cs" />
+    <Compile Include="Model\SubjectSelection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

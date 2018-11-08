@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Timetable_Scheduler_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="600" Width="972">
+    <Canvas HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" >
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                
+            </Menu>
+        </DockPanel>
         
-    </Grid>
+    </Canvas>
 </Window>

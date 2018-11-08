@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TimetableData.Control;
+using TimetableData.Controller;
 using TimetableData.Model;
 using Dapper;
 using System.Data.SqlClient;
