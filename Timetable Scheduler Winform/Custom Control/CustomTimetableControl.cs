@@ -80,7 +80,7 @@ namespace TimetableSchedulerWinform
                         Table[(int)time.Day, i].Value = "";
         }
 
-        public void Reset_Subject_Selections()
+        public void ResetSubjectSelections()
         {
             for (int i = 0; i < Table.Columns.Count; ++i)
                 for (int j = 0; j < Table.Rows.Count; ++j)
@@ -88,20 +88,26 @@ namespace TimetableSchedulerWinform
                         Table[i, j].Value = "";
         }
 
-        public void Set_Denied_Lecture_Times()
+        public void SetDeniedLectureTimes()
         {
-            for (int i = 0; i < Table.Columns.Count; ++i)
-                for (int j = 0; j < Table.Rows.Count; ++j)
-                    if (Table[i, j].Selected)
-                        Table[i, j].Style.BackColor = Color.Red;
+            foreach(DataGridViewCell cell in Table.SelectedCells)
+                cell.Style.BackColor = Color.Red;
+            
+            Table.ClearSelection();
         }
 
-        public void Set_Preferred_Lecture_Times()
+        public void SetPreferredLectureTimes()
         {
-            for (int i = 0; i < Table.Columns.Count; ++i)
-                for (int j = 0; j < Table.Rows.Count; ++j)
-                    if (Table[i, j].Selected)
-                        Table[i, j].Style.BackColor = Color.Green;
+            foreach (DataGridViewCell cell in Table.SelectedCells)
+                cell.Style.BackColor = Color.Green;
+            Table.ClearSelection();
+        }
+
+        public void ResetSelectedTimes()
+        {
+            foreach (DataGridViewCell cell in Table.SelectedCells)
+                cell.Style.BackColor = Table.DefaultCellStyle.BackColor;
+            Table.ClearSelection();
         }
 
         public void ResetLectureTimes()
@@ -113,24 +119,36 @@ namespace TimetableSchedulerWinform
                         Table[i, j].Style.BackColor = Color.White;
                     Table[i, j].Value = "";
                 }
-
-
         }
 
-        public List<LectureTime> GetLectureTimes()
+        public bool IsSelectedCell(DataGridViewCell cell)
+        {
+            return cell.Selected;
+        }
+
+        public bool IsPreferredCell(DataGridViewCell cell)
+        {
+            return cell.Style.BackColor == Color.Green;
+        }
+
+        public bool IsDeniedCell(DataGridViewCell cell)
+        {
+            return cell.Style.BackColor == Color.Red;
+        }
+
+        public List<LectureTime> GetLectureTimes(Func<DataGridViewCell, bool> CellCheckingCondition)
         {
             List<LectureTime> Times = new List<LectureTime>();
 
             for (int i = 0; i < Table.Columns.Count; ++i)
             {
-                //List<Lecture_Time> Times_By_Day = new List<Lecture_Time>();
                 int j = 0, k;
                 while (j < Table.Rows.Count)
                 {
-                    if (Table[i, j].Selected)
+                    if (CellCheckingCondition(Table[i, j]))
                     {
                         for (k = j; k < Table.Rows.Count; ++k)
-                            if (!Table[i, k].Selected)
+                            if (!CellCheckingCondition(Table[i, j]))
                                 break;
                         Times.Add(new LectureTime((DayOfWeek)i, j + 1, k));
                         j = k + 1;

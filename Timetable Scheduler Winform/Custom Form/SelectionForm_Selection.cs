@@ -118,7 +118,7 @@ namespace TimetableSchedulerWinform.CustomForm
             TimetableControl.ResetLectureTimes();
             TimetableControl.AddSubjectAndTimes(
                 (Subject)SubjectCombobox.SelectedItem,
-                TimetableControl.GetLectureTimes()
+                TimetableControl.GetLectureTimes(TimetableControl.IsSelectedCell)
             );
         }
 
@@ -138,7 +138,7 @@ namespace TimetableSchedulerWinform.CustomForm
                 if (selection_id > 0)
                 {
                     selection_time_controller.InsertTimes(selection_id, 
-                        TimetableControl.GetLectureTimes());
+                        TimetableControl.GetLectureTimes(TimetableControl.IsSelectedCell));
                     selection_lecturer_controller.InsertLecturers(selection_id,
                         checked_lecturers_id.ToList());
                     CustomMessages.Inserted(this, "selection");
@@ -156,7 +156,7 @@ namespace TimetableSchedulerWinform.CustomForm
                     selection_lecturer_controller.DeleteBySelection(selection.Id);
 
                     selection_time_controller.InsertTimes(selection.Id,
-                        TimetableControl.GetLectureTimes());
+                        TimetableControl.GetLectureTimes(TimetableControl.IsSelectedCell));
                     selection_lecturer_controller.InsertLecturers(selection.Id,
                         checked_lecturers_id.ToList());
 

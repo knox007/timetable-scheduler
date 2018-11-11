@@ -40,12 +40,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.OKButton = new System.Windows.Forms.Button();
+            this.ResetButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // PreferredLecturersCheckedListBox
             // 
+            this.PreferredLecturersCheckedListBox.CheckOnClick = true;
             this.PreferredLecturersCheckedListBox.FormattingEnabled = true;
             this.PreferredLecturersCheckedListBox.Location = new System.Drawing.Point(3, 34);
             this.PreferredLecturersCheckedListBox.Name = "PreferredLecturersCheckedListBox";
@@ -91,7 +93,9 @@
             // 
             // DeniedLecturersCheckedListBox
             // 
+            this.DeniedLecturersCheckedListBox.CheckOnClick = true;
             this.DeniedLecturersCheckedListBox.FormattingEnabled = true;
+            this.DeniedLecturersCheckedListBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.DeniedLecturersCheckedListBox.Location = new System.Drawing.Point(3, 34);
             this.DeniedLecturersCheckedListBox.Name = "DeniedLecturersCheckedListBox";
             this.DeniedLecturersCheckedListBox.Size = new System.Drawing.Size(141, 154);
@@ -136,12 +140,13 @@
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(156, 212);
+            this.CancelButton.Location = new System.Drawing.Point(75, 212);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 5;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // OKButton
             // 
@@ -153,11 +158,22 @@
             this.OKButton.UseVisualStyleBackColor = true;
             this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
+            // ResetButton
+            // 
+            this.ResetButton.Location = new System.Drawing.Point(156, 212);
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.Size = new System.Drawing.Size(75, 23);
+            this.ResetButton.TabIndex = 7;
+            this.ResetButton.Text = "Reset";
+            this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
+            // 
             // LecturersOptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(326, 243);
+            this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.label2);
@@ -189,5 +205,6 @@
         private System.Windows.Forms.TextBox PreferredFilter;
         private System.Windows.Forms.TextBox DeniedFilter;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button ResetButton;
     }
 }

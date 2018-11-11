@@ -64,13 +64,18 @@ namespace TimetableData.Model
             return (period >= 1 && period <= 16);
         }
 
-        private bool In_Range(int period)
+        private bool Available(int period)
         {
             return start_period < period && period < end_period;
         }
         public bool Intersect(LectureTime time)
         {
-            return In_Range(time.start_period) || In_Range(time.end_period);
+            return Available(time.start_period) || Available(time.end_period);
+        }
+        public static bool IsSubset(LectureTime container, LectureTime to_be_contained)
+        { //timeB is subset of timeA?
+            return container.Available(to_be_contained.start_period) 
+                && container.Available(to_be_contained.end_period);
         }
 
         public override string ToString()

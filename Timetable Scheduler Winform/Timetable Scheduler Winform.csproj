@@ -125,6 +125,12 @@
     <Compile Include="Custom Form\SubjectForm.Designer.cs">
       <DependentUpon>SubjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom Form\TimesOptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Custom Form\TimesOptionForm.Designer.cs">
+      <DependentUpon>TimesOptionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Custom Form\SubjectForm.resx">
       <DependentUpon>SubjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom Form\TimesOptionForm.resx">
+      <DependentUpon>TimesOptionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

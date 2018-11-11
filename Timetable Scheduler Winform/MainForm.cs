@@ -21,7 +21,9 @@ namespace TimetableSchedulerWinform
         SelectionManipulator manipulator;
         List<List<SubjectSelection>> optimized_selections;
         SubjectController subject_controller;
-        OptimizedSelectionsForm form;
+        OptimizedSelectionsForm optimized_selection_form;
+        LecturersOptionForm lecturers_option_form;
+        TimesOptionForm times_option_form;
 
         private int current_selection;
         private int CurrentSelection
@@ -32,6 +34,8 @@ namespace TimetableSchedulerWinform
             }
             set
             {
+                if (optimized_selections.Count == 0)
+                    return;
                 if (value < 0 || value >= optimized_selections.Count)
                 {
                     if (value < 0) CurrentSelection = optimized_selections.Count - 1;
@@ -51,8 +55,8 @@ namespace TimetableSchedulerWinform
                     current_selection + 1, 
                     optimized_selections.Count);
 
-                form.SetData(optimized_selections[current_selection]);
-                form.Show();
+                optimized_selection_form.SetData(optimized_selections[current_selection]);
+                optimized_selection_form.Show();
             }
         }
 
@@ -63,8 +67,13 @@ namespace TimetableSchedulerWinform
 
             manipulator = new SelectionManipulator();
             subject_controller = new SubjectController();
-            form = new OptimizedSelectionsForm();
-            form.FormClosing += AvoidClosing;
+            optimized_selections = new List<List<SubjectSelection>>();
+            optimized_selection_form = new OptimizedSelectionsForm();
+            optimized_selection_form.FormClosing += AvoidClosing;
+            lecturers_option_form = new LecturersOptionForm();
+            lecturers_option_form.FormClosing += AvoidClosing;
+            times_option_form = new TimesOptionForm();
+            times_option_form.FormClosing += AvoidClosing;
         }
 
         private void AvoidClosing(object sender, FormClosingEventArgs e)
@@ -165,7 +174,12 @@ namespace TimetableSchedulerWinform
 
         private void lecturersOptionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new LecturersOptionForm().Show();
+            lecturers_option_form.Show();
+        }
+
+        private void timesOptionLectureTimesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            times_option_form.Show();
         }
     }
 }

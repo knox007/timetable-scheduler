@@ -90,14 +90,14 @@
             // newSelectionToolStripMenuItem
             // 
             this.newSelectionToolStripMenuItem.Name = "newSelectionToolStripMenuItem";
-            this.newSelectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newSelectionToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.newSelectionToolStripMenuItem.Text = "New selection";
             this.newSelectionToolStripMenuItem.Click += new System.EventHandler(this.newSelectionToolStripMenuItem_Click);
             // 
             // showSelectionsToolStripMenuItem
             // 
             this.showSelectionsToolStripMenuItem.Name = "showSelectionsToolStripMenuItem";
-            this.showSelectionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showSelectionsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.showSelectionsToolStripMenuItem.Text = "Manage selections";
             this.showSelectionsToolStripMenuItem.Click += new System.EventHandler(this.showSelectionsToolStripMenuItem_Click);
             // 
@@ -110,48 +110,48 @@
             this.resetHallsToolStripMenuItem,
             this.resetAllToolStripMenuItem});
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.resetToolStripMenuItem.Text = "Reset";
             // 
             // resetSelectionsToolStripMenuItem
             // 
             this.resetSelectionsToolStripMenuItem.Name = "resetSelectionsToolStripMenuItem";
-            this.resetSelectionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetSelectionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.resetSelectionsToolStripMenuItem.Text = "Reset selections";
             this.resetSelectionsToolStripMenuItem.Click += new System.EventHandler(this.resetSelectionsToolStripMenuItem_Click);
             // 
             // resetSubjectsToolStripMenuItem
             // 
             this.resetSubjectsToolStripMenuItem.Name = "resetSubjectsToolStripMenuItem";
-            this.resetSubjectsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetSubjectsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.resetSubjectsToolStripMenuItem.Text = "Reset subjects";
             this.resetSubjectsToolStripMenuItem.Click += new System.EventHandler(this.resetSubjectsToolStripMenuItem_Click);
             // 
             // resetLecturersToolStripMenuItem
             // 
             this.resetLecturersToolStripMenuItem.Name = "resetLecturersToolStripMenuItem";
-            this.resetLecturersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetLecturersToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.resetLecturersToolStripMenuItem.Text = "Reset lecturers";
             this.resetLecturersToolStripMenuItem.Click += new System.EventHandler(this.resetLecturersToolStripMenuItem_Click);
             // 
             // resetHallsToolStripMenuItem
             // 
             this.resetHallsToolStripMenuItem.Name = "resetHallsToolStripMenuItem";
-            this.resetHallsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetHallsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.resetHallsToolStripMenuItem.Text = "Reset halls";
             this.resetHallsToolStripMenuItem.Click += new System.EventHandler(this.resetHallsToolStripMenuItem_Click);
             // 
             // resetAllToolStripMenuItem
             // 
             this.resetAllToolStripMenuItem.Name = "resetAllToolStripMenuItem";
-            this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.resetAllToolStripMenuItem.Text = "Reset all";
             this.resetAllToolStripMenuItem.Click += new System.EventHandler(this.resetAllToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -168,19 +168,19 @@
             // generateToolStripMenuItem
             // 
             this.generateToolStripMenuItem.Name = "generateToolStripMenuItem";
-            this.generateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.generateToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.generateToolStripMenuItem.Text = "Generate all choices";
             // 
             // nextChoiceToolStripMenuItem
             // 
             this.nextChoiceToolStripMenuItem.Name = "nextChoiceToolStripMenuItem";
-            this.nextChoiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nextChoiceToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.nextChoiceToolStripMenuItem.Text = "Next choice";
             // 
             // previousChoiceToolStripMenuItem
             // 
             this.previousChoiceToolStripMenuItem.Name = "previousChoiceToolStripMenuItem";
-            this.previousChoiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.previousChoiceToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.previousChoiceToolStripMenuItem.Text = "Previous choice";
             // 
             // optionsToolStripMenuItem
@@ -212,6 +212,7 @@
             this.timesOptionLectureTimesToolStripMenuItem.Name = "timesOptionLectureTimesToolStripMenuItem";
             this.timesOptionLectureTimesToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.timesOptionLectureTimesToolStripMenuItem.Text = "Preferred/denied lecture times";
+            this.timesOptionLectureTimesToolStripMenuItem.Click += new System.EventHandler(this.timesOptionLectureTimesToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 

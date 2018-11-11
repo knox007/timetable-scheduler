@@ -34,7 +34,7 @@ namespace TimetableData.Manipulator
             Generator = new SelectionGenerator();
         }
 
-        private void Set_Priority_By_Halls_Height_Preference()
+        private void SetPriorityByHallsHeightPreference()
         {
             if (!Halls_Height_Preference) //== false
                 return;
@@ -49,7 +49,7 @@ namespace TimetableData.Manipulator
                     selection.Priority += max_height - selection.Hall.Floor;
         }
 
-        private void Set_Priority_By_Lecture_Times()
+        private void SetPriorityByLectureTimes()
         {
             foreach (SubjectSelection selection in AllSelections)
                 foreach (LectureTime time in selection.Times)
@@ -63,7 +63,7 @@ namespace TimetableData.Manipulator
                 }
         }
 
-        private void Set_Priority_By_Lecturers()
+        private void SetPriorityByLecturers()
         {
             foreach (SubjectSelection selection in AllSelections)
                 foreach (Lecturer lecturer in selection.Lecturers)
@@ -77,7 +77,7 @@ namespace TimetableData.Manipulator
                 }
         }
 
-        private void Set_Priority_By_Subject()
+        private void SetPriorityBySubject()
         {
             foreach (SubjectSelection selection in AllSelections)
                 if (!Selected_Subjects.Exists(subject => subject.Id == selection.Subject.Id))
@@ -90,10 +90,10 @@ namespace TimetableData.Manipulator
         {
             AllSelections.ForEach(subject => subject.Priority = 0);
 
-            Set_Priority_By_Subject();
-            Set_Priority_By_Lecturers();
-            Set_Priority_By_Lecture_Times();
-            Set_Priority_By_Halls_Height_Preference();
+            SetPriorityBySubject();
+            SetPriorityByLecturers();
+            SetPriorityByLectureTimes();
+            SetPriorityByHallsHeightPreference();
 
             AvailableSelecions.Clear();
             AllSelections.ForEach(subject => {
