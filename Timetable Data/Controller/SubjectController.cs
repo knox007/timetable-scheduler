@@ -21,6 +21,12 @@ namespace TimetableData.Controller
             return Exists_In_Table("SubjectSelection", "SubjectId", t.Id.ToString())
                 ? false
                 : connection.Delete(t);
+            /*return connection.ExecuteScalar<bool>(
+                    "DELETE FROM SubjectSelection " +
+                    "WHERE SubjectId = @Id", new { t.Id })
+                && connection.Delete(t);*/
         }
+
+
     }
 }

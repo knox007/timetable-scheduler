@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Dapper.Contrib.Extensions;
 
@@ -7,13 +8,13 @@ namespace TimetableData.Model
     [Table("LectureTime")]
     public class LectureTime
     {
-        private static readonly string regex_format = @"^\[(\d):(\d\d)-(\d\d)\]$";
+        private static readonly string regex_format = @"\[(\d):(\d+)-(\d+)\]";
         //[1:03-04] => Day = Monday, Start_Period = 3, End_Period = 4;
         public int Id { get; set; }
 
         public string Time
         {
-            get { return Time_Numbers_To_Time_String(Day, start_period, end_period); }
+            get { return TimeNumbersToTimeString(Day, start_period, end_period); }
             set { Time_String_To_Time_Numbers(value); }
         }
 
@@ -25,10 +26,10 @@ namespace TimetableData.Model
         [Computed]
         public DayOfWeek Day { get; set; }
 
-        public static string Time_Numbers_To_Time_String(DayOfWeek day, int start_period, int end_period)
+        public static string TimeNumbersToTimeString(DayOfWeek day, int start_period, int end_period)
         {
             return string.Format("[{0}:{1:00}-{2:00}]",
-                (int)day, start_period.ToString(), end_period.ToString()).ToString();
+                (int)day, start_period.ToString(), end_period.ToString());
         }
 
         public bool Time_String_To_Time_Numbers(string time)
@@ -49,7 +50,7 @@ namespace TimetableData.Model
             Day = day;
             Start_Period = start_period;
             End_Period = end_period;
-            Time = Time_Numbers_To_Time_String(day, start_period, end_period);
+            Time = TimeNumbersToTimeString(day, start_period, end_period);
         }
 
         public LectureTime(string time)
@@ -74,7 +75,27 @@ namespace TimetableData.Model
 
         public override string ToString()
         {
-            return Time_Numbers_To_Time_String(Day, start_period, end_period);
+            return //TimeNumbersToTimeString(Day, start_period, end_period);
+                ToNiceString();
+        }
+
+        public string ToNiceString()
+        {
+            return string.Format("[{0}: {1} - {2}]", 
+                Day.ToString(), 
+                start_period, 
+                end_period);
+        }
+
+        public static string TimeListToString(List<LectureTime> times)
+        {
+            if (times.Count == 0) return "";
+
+            string result = "";
+            for (int i = 0; i < times.Count - 1; ++i)
+                result += (times[i].ToNiceString() + Environment.NewLine);
+            result += times[times.Count - 1].ToNiceString();
+            return result;
         }
     }
 }

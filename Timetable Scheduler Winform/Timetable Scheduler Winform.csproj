@@ -83,6 +83,12 @@
     <Compile Include="Custom Form\LecturerForm.Designer.cs">
       <DependentUpon>LecturerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom Form\LecturersOptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Custom Form\LecturersOptionForm.Designer.cs">
+      <DependentUpon>LecturersOptionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom Form\SelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,18 @@
     <Compile Include="Custom Form\SelectionForm_Subject.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Custom Form\OptimizedSelectionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Custom Form\OptimizedSelectionsForm.Designer.cs">
+      <DependentUpon>OptimizedSelectionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Form\SelectionListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Custom Form\SelectionListForm.Designer.cs">
+      <DependentUpon>SelectionListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom Form\SubjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +131,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForm_Selection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm_Subject.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Custom Form\LectureHallForm.resx">
@@ -121,8 +145,17 @@
     <EmbeddedResource Include="Custom Form\LecturerForm.resx">
       <DependentUpon>LecturerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Custom Form\LecturersOptionForm.resx">
+      <DependentUpon>LecturersOptionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Custom Form\SelectionForm.resx">
       <DependentUpon>SelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom Form\OptimizedSelectionsForm.resx">
+      <DependentUpon>OptimizedSelectionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom Form\SelectionListForm.resx">
+      <DependentUpon>SelectionListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom Form\SubjectForm.resx">
       <DependentUpon>SubjectForm.cs</DependentUpon>

@@ -19,6 +19,18 @@ namespace TimetableSchedulerWinform.CustomForm
         {
             all_subjects = new BindingList<Subject>(new SubjectController().GetAll());
             SubjectCombobox.DataSource = all_subjects;
+            SubjectCombobox.DataBindings.DefaultDataSourceUpdateMode 
+                = DataSourceUpdateMode.OnPropertyChanged;
+            SubjectCombobox.SelectedIndexChanged += SubjectCombobox_SelectedIndexChanged;
+
+            SubjectCombobox.ValueMember = "Id";
+            SubjectCombobox.DisplayMember = "Name";
+        }
+
+        private void SubjectCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SubjectCombobox.SelectedIndex != -1 && selection != null)
+                selection.SubjectId = Convert.ToInt32(SubjectCombobox.SelectedValue);
         }
 
         private void SubjectAcceptButton_Click(object sender, EventArgs e)
@@ -46,11 +58,15 @@ namespace TimetableSchedulerWinform.CustomForm
             {
                 foreach (Subject subject in form.InsertedSubjects)
                     all_subjects.Add(subject);
-                SubjectCombobox.SelectedIndex = SubjectCombobox.Items.Count - 1;
+                //SubjectCombobox.SelectedIndex = all_subjects.Count - 1;
+                //SubjectCombobox.Refresh();
+            }
+            else if (form.Deleted)
+            {
+                all_subjects.RemoveAt(SubjectCombobox.SelectedIndex);
+                //SubjectCombobox.Refresh();
             }
                 
-            else if (form.Deleted)
-                all_subjects.RemoveAt(SubjectCombobox.SelectedIndex);
         }
     }
 }

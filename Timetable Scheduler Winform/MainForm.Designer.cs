@@ -31,7 +31,13 @@
             this._MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showSelectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetSelectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetSubjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetLecturersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetHallsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,12 +53,12 @@
             this.SubjectFilteringTextbox = new System.Windows.Forms.TextBox();
             this.FilterLabel = new System.Windows.Forms.Label();
             this.CompulsorySubjectsGridView = new System.Windows.Forms.DataGridView();
+            this.GenerateButton = new System.Windows.Forms.Button();
+            this.PreviousButton = new System.Windows.Forms.Button();
+            this.NextButton = new System.Windows.Forms.Button();
+            this.RefreshButton = new System.Windows.Forms.Button();
+            this.SelectionNumberingLabel = new System.Windows.Forms.Label();
             this.TimetableControl = new TimetableSchedulerWinform.TableCustomControl();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.showSelectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompulsorySubjectsGridView)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +81,7 @@
             this.dataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newSelectionToolStripMenuItem,
             this.showSelectionsToolStripMenuItem,
-            this.resetDatabaseToolStripMenuItem,
+            this.resetToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
             this.dataToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
@@ -88,11 +94,59 @@
             this.newSelectionToolStripMenuItem.Text = "New selection";
             this.newSelectionToolStripMenuItem.Click += new System.EventHandler(this.newSelectionToolStripMenuItem_Click);
             // 
-            // resetDatabaseToolStripMenuItem
+            // showSelectionsToolStripMenuItem
             // 
-            this.resetDatabaseToolStripMenuItem.Name = "resetDatabaseToolStripMenuItem";
-            this.resetDatabaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.resetDatabaseToolStripMenuItem.Text = "Reset database";
+            this.showSelectionsToolStripMenuItem.Name = "showSelectionsToolStripMenuItem";
+            this.showSelectionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showSelectionsToolStripMenuItem.Text = "Manage selections";
+            this.showSelectionsToolStripMenuItem.Click += new System.EventHandler(this.showSelectionsToolStripMenuItem_Click);
+            // 
+            // resetToolStripMenuItem
+            // 
+            this.resetToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.resetSelectionsToolStripMenuItem,
+            this.resetSubjectsToolStripMenuItem,
+            this.resetLecturersToolStripMenuItem,
+            this.resetHallsToolStripMenuItem,
+            this.resetAllToolStripMenuItem});
+            this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetToolStripMenuItem.Text = "Reset";
+            // 
+            // resetSelectionsToolStripMenuItem
+            // 
+            this.resetSelectionsToolStripMenuItem.Name = "resetSelectionsToolStripMenuItem";
+            this.resetSelectionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetSelectionsToolStripMenuItem.Text = "Reset selections";
+            this.resetSelectionsToolStripMenuItem.Click += new System.EventHandler(this.resetSelectionsToolStripMenuItem_Click);
+            // 
+            // resetSubjectsToolStripMenuItem
+            // 
+            this.resetSubjectsToolStripMenuItem.Name = "resetSubjectsToolStripMenuItem";
+            this.resetSubjectsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetSubjectsToolStripMenuItem.Text = "Reset subjects";
+            this.resetSubjectsToolStripMenuItem.Click += new System.EventHandler(this.resetSubjectsToolStripMenuItem_Click);
+            // 
+            // resetLecturersToolStripMenuItem
+            // 
+            this.resetLecturersToolStripMenuItem.Name = "resetLecturersToolStripMenuItem";
+            this.resetLecturersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetLecturersToolStripMenuItem.Text = "Reset lecturers";
+            this.resetLecturersToolStripMenuItem.Click += new System.EventHandler(this.resetLecturersToolStripMenuItem_Click);
+            // 
+            // resetHallsToolStripMenuItem
+            // 
+            this.resetHallsToolStripMenuItem.Name = "resetHallsToolStripMenuItem";
+            this.resetHallsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetHallsToolStripMenuItem.Text = "Reset halls";
+            this.resetHallsToolStripMenuItem.Click += new System.EventHandler(this.resetHallsToolStripMenuItem_Click);
+            // 
+            // resetAllToolStripMenuItem
+            // 
+            this.resetAllToolStripMenuItem.Name = "resetAllToolStripMenuItem";
+            this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetAllToolStripMenuItem.Text = "Reset all";
+            this.resetAllToolStripMenuItem.Click += new System.EventHandler(this.resetAllToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -151,6 +205,7 @@
             this.lecturersOptionToolStripMenuItem.Name = "lecturersOptionToolStripMenuItem";
             this.lecturersOptionToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.lecturersOptionToolStripMenuItem.Text = "Preferred/denied lecturers";
+            this.lecturersOptionToolStripMenuItem.Click += new System.EventHandler(this.lecturersOptionToolStripMenuItem_Click);
             // 
             // timesOptionLectureTimesToolStripMenuItem
             // 
@@ -205,6 +260,54 @@
             this.CompulsorySubjectsGridView.Size = new System.Drawing.Size(148, 319);
             this.CompulsorySubjectsGridView.TabIndex = 5;
             // 
+            // GenerateButton
+            // 
+            this.GenerateButton.Location = new System.Drawing.Point(316, 379);
+            this.GenerateButton.Name = "GenerateButton";
+            this.GenerateButton.Size = new System.Drawing.Size(75, 23);
+            this.GenerateButton.TabIndex = 6;
+            this.GenerateButton.Text = "Generate";
+            this.GenerateButton.UseVisualStyleBackColor = true;
+            this.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
+            // 
+            // PreviousButton
+            // 
+            this.PreviousButton.Location = new System.Drawing.Point(397, 379);
+            this.PreviousButton.Name = "PreviousButton";
+            this.PreviousButton.Size = new System.Drawing.Size(75, 23);
+            this.PreviousButton.TabIndex = 7;
+            this.PreviousButton.Text = "Previous";
+            this.PreviousButton.UseVisualStyleBackColor = true;
+            this.PreviousButton.Click += new System.EventHandler(this.PreviousButton_Click);
+            // 
+            // NextButton
+            // 
+            this.NextButton.Location = new System.Drawing.Point(570, 379);
+            this.NextButton.Name = "NextButton";
+            this.NextButton.Size = new System.Drawing.Size(75, 23);
+            this.NextButton.TabIndex = 8;
+            this.NextButton.Text = "Next";
+            this.NextButton.UseVisualStyleBackColor = true;
+            this.NextButton.Click += new System.EventHandler(this.NextButton_Click);
+            // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Location = new System.Drawing.Point(727, 379);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(75, 23);
+            this.RefreshButton.TabIndex = 9;
+            this.RefreshButton.Text = "Refresh";
+            this.RefreshButton.UseVisualStyleBackColor = true;
+            // 
+            // SelectionNumberingLabel
+            // 
+            this.SelectionNumberingLabel.AutoSize = true;
+            this.SelectionNumberingLabel.Location = new System.Drawing.Point(483, 384);
+            this.SelectionNumberingLabel.Name = "SelectionNumberingLabel";
+            this.SelectionNumberingLabel.Size = new System.Drawing.Size(71, 13);
+            this.SelectionNumberingLabel.TabIndex = 10;
+            this.SelectionNumberingLabel.Text = "Selection 0/0";
+            // 
             // TimetableControl
             // 
             this.TimetableControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -213,57 +316,16 @@
             this.TimetableControl.Size = new System.Drawing.Size(633, 346);
             this.TimetableControl.TabIndex = 1;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(408, 379);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Generate";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(489, 379);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Previous";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(570, 379);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Next";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(727, 379);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Refresh";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // showSelectionsToolStripMenuItem
-            // 
-            this.showSelectionsToolStripMenuItem.Name = "showSelectionsToolStripMenuItem";
-            this.showSelectionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.showSelectionsToolStripMenuItem.Text = "Show selections";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 414);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SelectionNumberingLabel);
+            this.Controls.Add(this.RefreshButton);
+            this.Controls.Add(this.NextButton);
+            this.Controls.Add(this.PreviousButton);
+            this.Controls.Add(this.GenerateButton);
             this.Controls.Add(this.CompulsorySubjectsGridView);
             this.Controls.Add(this.FilterLabel);
             this.Controls.Add(this.SubjectFilteringTextbox);
@@ -284,7 +346,7 @@
         private System.Windows.Forms.MenuStrip _MainMenuStrip;
 
         private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem resetDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem functionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nextChoiceToolStripMenuItem;
@@ -302,11 +364,17 @@
         private System.Windows.Forms.TextBox SubjectFilteringTextbox;
         private System.Windows.Forms.Label FilterLabel;
         private System.Windows.Forms.DataGridView CompulsorySubjectsGridView;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button GenerateButton;
+        private System.Windows.Forms.Button PreviousButton;
+        private System.Windows.Forms.Button NextButton;
+        private System.Windows.Forms.Button RefreshButton;
         private System.Windows.Forms.ToolStripMenuItem showSelectionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetSelectionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetLecturersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetHallsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetSubjectsToolStripMenuItem;
+        private System.Windows.Forms.Label SelectionNumberingLabel;
     }
 }
 

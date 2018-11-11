@@ -10,68 +10,49 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TimetableData.Controller;
 using TimetableData.Model;
+using TimetableData.Manipulator;
+using TimetableSchedulerWinform.CustomControl;
 using TimetableSchedulerWinform.CustomForm;
 
 namespace TimetableSchedulerWinform
 {
     public partial class MainForm : Form
     {
-        DataTable all_subjects;
-        HashSet<int> checked_subjects_id;
+        SelectionManipulator manipulator;
+        List<List<SubjectSelection>> optimized_selections;
+        SubjectController subject_controller;
+        OptimizedSelectionsForm form;
 
-        private void InitializeCompulsorySubjects()
+        private int current_selection;
+        private int CurrentSelection
         {
-            all_subjects = new DataTable();
-            checked_subjects_id = new HashSet<int>();
-            using (var reader = ObjectReader.Create(new SubjectController().GetAll()))
-                all_subjects.Load(reader);
-            CompulsorySubjectsGridView.DataSource = all_subjects;
-
-            CompulsorySubjectsGridView.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle()
+            get
             {
-                Alignment = DataGridViewContentAlignment.MiddleCenter
-            };
-
-            CompulsorySubjectsGridView.Columns.Add(new DataGridViewCheckBoxColumn()
+                return current_selection;
+            }
+            set
             {
-                Name = "Select"
-            });
-            //id 0, name 1, codename 2, checkbox 3
-            CompulsorySubjectsGridView.Columns["Id"].Visible = false;
-            CompulsorySubjectsGridView.Columns["Codename"].Visible = false;
+                if (value < 0 || value >= optimized_selections.Count)
+                {
+                    if (value < 0) CurrentSelection = optimized_selections.Count - 1;
+                    else CurrentSelection = 0;
 
-            CompulsorySubjectsGridView.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            CompulsorySubjectsGridView.Columns["Name"].ReadOnly = true;
-
-            CompulsorySubjectsGridView.Columns["Select"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            CompulsorySubjectsGridView.CellValueChanged += CompulsorySubjectsGridView_CellValueChanged;
-            CompulsorySubjectsGridView.CellMouseUp += CompulsorySubjectsGridView_CellMouseUp;
-
-            CompulsorySubjectsGridView.AllowUserToAddRows = false;
-            CompulsorySubjectsGridView.AllowUserToDeleteRows = false;
-            CompulsorySubjectsGridView.AllowUserToOrderColumns = false;
-            CompulsorySubjectsGridView.AllowUserToResizeColumns = false;
-            CompulsorySubjectsGridView.AllowUserToResizeRows = false;
-
-            CompulsorySubjectsGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            CompulsorySubjectsGridView.MultiSelect = false;
-        }
-
-        private void CompulsorySubjectsGridView_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.ColumnIndex == 0)
-                CompulsorySubjectsGridView.EndEdit();
-        }
-
-        private void CompulsorySubjectsGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 0)
-            {
-                if ((bool)CompulsorySubjectsGridView.Rows[e.RowIndex].Cells[0].Value)
-                    checked_subjects_id.Add((int)CompulsorySubjectsGridView.Rows[e.RowIndex].Cells[2].Value);
-                //MessageBox.Show("Checked");
+                    return;
+                }
                 else
-                    checked_subjects_id.Remove((int)CompulsorySubjectsGridView.Rows[e.RowIndex].Cells[2].Value);
+                    current_selection = value;
+
+                TimetableControl.ResetLectureTimes();
+                foreach (SubjectSelection selection in optimized_selections[current_selection])
+                    TimetableControl.AddSubjectSelection(selection);
+
+                SelectionNumberingLabel.Text 
+                    = string.Format("Selection {0}/{1}", 
+                    current_selection + 1, 
+                    optimized_selections.Count);
+
+                form.SetData(optimized_selections[current_selection]);
+                form.Show();
             }
         }
 
@@ -79,21 +60,53 @@ namespace TimetableSchedulerWinform
         {
             InitializeComponent();
             InitializeCompulsorySubjects();
+
+            manipulator = new SelectionManipulator();
+            subject_controller = new SubjectController();
+            form = new OptimizedSelectionsForm();
+            form.FormClosing += AvoidClosing;
         }
 
-        private void SubjectFilteringTextbox_TextChanged(object sender, EventArgs e)
+        private void AvoidClosing(object sender, FormClosingEventArgs e)
         {
-            all_subjects.DefaultView.RowFilter 
-                = String.Format("Name LIKE '%{0}%'", SubjectFilteringTextbox.Text);
-            foreach(DataGridViewRow row in CompulsorySubjectsGridView.Rows)
-                //same id
-               if (checked_subjects_id.Contains((int)row.Cells[2].Value))
-                    row.Cells[0].Value = true;
+            if(e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                ((Form)sender).Hide();
+            }
         }
-        
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void GenerateButton_Click(object sender, EventArgs e)
         {
-            Close();
+            if (checked_subjects_id.Count == 0)
+            {
+                CustomMessages.SelectFail(this);
+                return;
+            }
+
+            manipulator.AllSelections = new SubjectSelectionController().GetAll();
+            manipulator.Selected_Subjects.Clear();
+            manipulator.Halls_Height_Preference
+                = floorsHeightPreferenceToolStripMenuItem.Checked;
+
+            foreach (int id in checked_subjects_id)
+                manipulator.Selected_Subjects.Add(subject_controller.Get(id));
+            optimized_selections = manipulator.GetOptimizedSelections();
+
+            if (optimized_selections.Count == 0 || optimized_selections[0].Count == 0)
+                CustomMessages.NoSelectionAvailable(this);
+            else
+                CurrentSelection = 0;
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            ++CurrentSelection;
+        }
+
+        private void PreviousButton_Click(object sender, EventArgs e)
+        {
+            --CurrentSelection;
         }
 
         private void floorsHeightPreferenceToolStripMenuItem_Click(object sender, EventArgs e)
@@ -102,10 +115,57 @@ namespace TimetableSchedulerWinform
             floorsHeightPreferenceToolStripMenuItem.Checked = !state;
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+
+
         private void newSelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectionForm form = new SelectionForm();
+            form.SetSelection(new SubjectSelection());
             form.Show(this);
+        }
+
+        private void showSelectionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectionListForm form = new SelectionListForm();
+            form.Show(this);
+        }
+
+        private void resetSelectionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CustomMessages.YesNoReset(this))
+                new SubjectSelectionController().DeleteAll();
+        }
+
+        private void resetLecturersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CustomMessages.YesNoReset(this))
+                new LecturerController().DeleteAll();
+        }
+
+        private void resetHallsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CustomMessages.YesNoReset(this))
+                new LectureHallController().DeleteAll();
+        }
+
+        private void resetAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new LectureHallController().DeleteAll();
+        }
+
+        private void resetSubjectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //new SubjectController().DeleteAll();
+        }
+
+        private void lecturersOptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new LecturersOptionForm().Show();
         }
     }
 }

@@ -38,11 +38,13 @@ namespace TimetableSchedulerWinform
             Table.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             Table.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             Table.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            Table.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Table.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle()
              {
                  Alignment = DataGridViewContentAlignment.MiddleCenter
              };
             Table.AutoSize = true;
+            
         }
 
         public TableCustomControl()
@@ -62,14 +64,14 @@ namespace TimetableSchedulerWinform
                     Table[(int)time.Day, i - 1].Value = subject.Codename;
         }
 
-        public void Add_Subject_Selection(SubjectSelection selection)
+        public void AddSubjectSelection(SubjectSelection selection)
         {
             foreach (LectureTime time in selection.Times)
                 for (int i = time.Start_Period; i <= time.End_Period; ++i)
                     Table[(int)time.Day, i - 1].Value = selection.Subject.Codename;
         }
 
-        public void Remove_Subject_Selection(SubjectSelection selection)
+        public void RemoveSubjectSelection(SubjectSelection selection)
         {
             foreach (LectureTime time in selection.Times)
                 for (int i = time.Start_Period; i <= time.End_Period; ++i)

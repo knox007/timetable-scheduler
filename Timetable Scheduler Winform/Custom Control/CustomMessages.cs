@@ -11,7 +11,7 @@ namespace TimetableSchedulerWinform.CustomControl
     {
         public static bool YesNoDelete(IWin32Window owner)
         {
-            return MessageBox.Show(owner, "Do you want to delete this?", "Delete?",
+            return MessageBox.Show(owner, "Do you want to delete this?", "Delete",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button2)
                 == DialogResult.Yes;
@@ -47,6 +47,47 @@ namespace TimetableSchedulerWinform.CustomControl
             MessageBox.Show(owner, "The " + object_name + " has been created. ",
                 "Created",
                 MessageBoxButtons.OK, MessageBoxIcon.Asterisk,
+                MessageBoxDefaultButton.Button1);
+        }
+
+        public static bool YesNoReset(IWin32Window owner)
+        {
+            return MessageBox.Show(owner, "Everything will be deleted." + Environment.NewLine 
+                + "Do you really want to do this?", "Reset",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button2)
+                == DialogResult.Yes;
+        }
+
+        public static void DeleteFail(IWin32Window owner, string object_name)
+        {
+            MessageBox.Show(owner, "The " + object_name + " cannot be deleted since it is being used. " +
+                "Please delete something else first.",
+                "Delete fail",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+        }
+
+        public static void SelectFail(IWin32Window owner)
+        {
+            MessageBox.Show(owner, "You did not select anything to perform this action!",
+                "Perform fail",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+        }
+
+        public static void ChooseBeforeCarryOn(IWin32Window owner, string object_name)
+        {
+            MessageBox.Show(owner, "Please choose " + object_name +
+                " before you carry on this action.", "Select", MessageBoxButtons.OK,
+                MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+        }
+
+        public static void NoSelectionAvailable(IWin32Window owner)
+        {
+            MessageBox.Show(owner, "No choice available with current data. " + Environment.NewLine +
+                "Maybe the subjects you have too little selection.", "No choice available",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation, 
                 MessageBoxDefaultButton.Button1);
         }
     }

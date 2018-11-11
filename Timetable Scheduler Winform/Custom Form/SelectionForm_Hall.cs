@@ -16,6 +16,18 @@ namespace TimetableSchedulerWinform.CustomForm
         {
             all_halls = new BindingList<LectureHall>(new LectureHallController().GetAll());
             HallCombobox.DataSource = all_halls;
+            HallCombobox.DataBindings.DefaultDataSourceUpdateMode 
+                = System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged;
+            HallCombobox.SelectedValueChanged += HallCombobox_SelectedValueChanged;
+
+            HallCombobox.ValueMember = "Id";
+            HallCombobox.DisplayMember = "";
+        }
+
+        private void HallCombobox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (HallCombobox.SelectedIndex > -1 && selection != null)
+                selection.HallId = Convert.ToInt32(HallCombobox.SelectedValue);
         }
 
         private void HallEditButton_Click(object sender, EventArgs e)

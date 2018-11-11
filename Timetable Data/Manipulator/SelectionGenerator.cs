@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using TimetableData.Model;
 
-namespace TimetableData.Controller
+namespace TimetableData.Manipulator
 {
-    class Selection_Generator
+    class SelectionGenerator
     {
         private int[,] table;
         // = new int[16, 7]
         //16 periods each day in week
-        public List<SubjectSelection> Available_Selections { get; set; }
+        public List<SubjectSelection> AvailableSelections { get; set; }
         private List<int> Preferred_Selections_Id;
         private List<List<SubjectSelection>> Grouped_Selections, Optimized_Selections;
 
-        public Selection_Generator()
+        public SelectionGenerator()
         {
             Preferred_Selections_Id = new List<int>();
             Optimized_Selections = new List<List<SubjectSelection>>();
             table = new int[16, 7];
         }
-        public Selection_Generator(List<SubjectSelection> Available_Selections)
+        public SelectionGenerator(List<SubjectSelection> Available_Selections)
             : this()
         {
-            this.Available_Selections = Available_Selections;
+            this.AvailableSelections = Available_Selections;
         }
         
         public bool Add_Preferred_Selection(SubjectSelection selection)
@@ -58,7 +58,8 @@ namespace TimetableData.Controller
                 for (int period = time.Start_Period; period <= time.End_Period; ++period)
                     if (Period_Used(period, time.Day))
                         return false;
-                    else Set_Period(period, time.Day, selection.SubjectId);
+                    else
+                        Set_Period(period, time.Day, selection.SubjectId);
             
             return true;
         }
@@ -66,12 +67,12 @@ namespace TimetableData.Controller
         private void Remove_Selection_From_Table(SubjectSelection selection)
         {
             foreach (LectureTime time in selection.Times)
-                for (int period = time.Start_Period - 1; period < time.End_Period; ++period)
+                for (int period = time.Start_Period - 1; period <= time.End_Period; ++period)
                     if (table[(int)time.Day, period] == selection.SubjectId)
                         Set_Period(period, time.Day, 0);
         }
 
-        private List<SubjectSelection> Int_Array_To_Selection_List(int[] selections)
+        private List<SubjectSelection> IntArrayToSelectionList(int[] selections)
         {
             List<SubjectSelection> result = new List<SubjectSelection>();
             for (int i = 0; i < selections.Length; ++i)
@@ -82,7 +83,7 @@ namespace TimetableData.Controller
         private void Attempt_Selections(int[] selections, int i)
         {
             if (i == Grouped_Selections.Count)
-                Optimized_Selections.Add(Int_Array_To_Selection_List(selections));
+                Optimized_Selections.Add(IntArrayToSelectionList(selections));
             else
                 for (int j = 0; j < Grouped_Selections[i].Count; ++j)
                 {
@@ -94,14 +95,16 @@ namespace TimetableData.Controller
                         
                     Remove_Selection_From_Table(Grouped_Selections[i][j]);
                 }
-                    
         }
 
         public List<List<SubjectSelection>> Get_Optimized_Selections()
         {
-            Grouped_Selections = Available_Selections
+            Optimized_Selections.Clear();
+            Array.Clear(table, 0, table.Length);
+
+            Grouped_Selections = AvailableSelections
                 .GroupBy(s => s.Subject.Id)
-                .Select(g => g.OrderBy(s => s.Priority).ToList())
+                .Select(g => g.OrderByDescending(s => s.Priority).ToList())
                 .ToList();
 
             for (int i = 0; i < Grouped_Selections.Count; ++i)
@@ -109,6 +112,10 @@ namespace TimetableData.Controller
                     && (Preferred_Selections_Id.Exists(Id =>
                         Id == Grouped_Selections[i][0].SubjectId)))
                     Grouped_Selections.RemoveAt(i--);
+
+            for (int i = 0; i < Grouped_Selections.Count; ++i)
+                if (Grouped_Selections[i].Count == 0)
+                    Grouped_Selections.RemoveAt(i);
 
             int[] selections = new int[Grouped_Selections.Count];
             Attempt_Selections(selections, 0);

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using TimetableData.Model;
 
-namespace TimetableData.Controller
+namespace TimetableData.Manipulator
 {
-    class Selection_Manipulator
+    public class SelectionManipulator
     {
-        public List<SubjectSelection> All_Selections { get; set; }
-        private List<SubjectSelection> Available_Selecions { get; set; }
+        public List<SubjectSelection> AllSelections { get; set; }
+        private List<SubjectSelection> AvailableSelecions { get; set; }
 
         public List<Subject> Selected_Subjects { get; set; }
         public List<Lecturer> Preferred_Lecturers { get; set; }
@@ -17,12 +17,12 @@ namespace TimetableData.Controller
         public List<LectureTime> Denied_Lecture_Times { get; set; }
         public bool Halls_Height_Preference { get; set; }
 
-        private Selection_Generator Generator { get; set; }
+        private SelectionGenerator Generator { get; set; }
 
-        public Selection_Manipulator()
+        public SelectionManipulator()
         {
-            All_Selections = new List<SubjectSelection>();
-            Available_Selecions = new List<SubjectSelection>();
+            AllSelections = new List<SubjectSelection>();
+            AvailableSelecions = new List<SubjectSelection>();
 
             Selected_Subjects = new List<Subject>();
             Preferred_Lecturers = new List<Lecturer>();
@@ -31,7 +31,7 @@ namespace TimetableData.Controller
             Denied_Lecture_Times = new List<LectureTime>();
             Halls_Height_Preference = false;
 
-            Generator = new Selection_Generator();
+            Generator = new SelectionGenerator();
         }
 
         private void Set_Priority_By_Halls_Height_Preference()
@@ -40,18 +40,18 @@ namespace TimetableData.Controller
                 return;
 
             int max_height = -1;
-            foreach (SubjectSelection selection in All_Selections)
+            foreach (SubjectSelection selection in AllSelections)
                 max_height = (max_height > selection.Hall.Floor) ?
                     max_height : selection.Hall.Floor;
 
-            foreach (SubjectSelection selection in All_Selections)
+            foreach (SubjectSelection selection in AllSelections)
                 if (selection.Priority > 0)
                     selection.Priority += max_height - selection.Hall.Floor;
         }
 
         private void Set_Priority_By_Lecture_Times()
         {
-            foreach (SubjectSelection selection in All_Selections)
+            foreach (SubjectSelection selection in AllSelections)
                 foreach (LectureTime time in selection.Times)
                 {
                     foreach (LectureTime denied_time in Denied_Lecture_Times)
@@ -65,7 +65,7 @@ namespace TimetableData.Controller
 
         private void Set_Priority_By_Lecturers()
         {
-            foreach (SubjectSelection selection in All_Selections)
+            foreach (SubjectSelection selection in AllSelections)
                 foreach (Lecturer lecturer in selection.Lecturers)
                 {
                     foreach (Lecturer denied_lecturer in Denied_Lecturers)
@@ -79,26 +79,27 @@ namespace TimetableData.Controller
 
         private void Set_Priority_By_Subject()
         {
-            foreach (SubjectSelection selection in All_Selections)
+            foreach (SubjectSelection selection in AllSelections)
                 if (!Selected_Subjects.Exists(subject => subject.Id == selection.Subject.Id))
                     selection.Priority = 0;
                 else
                     selection.Priority += 1;
         }
 
-        private void Calculate_Priority()
+        private void CalculatePriority()
         {
-            All_Selections.ForEach(subject => subject.Priority = 0);
+            AllSelections.ForEach(subject => subject.Priority = 0);
 
             Set_Priority_By_Subject();
             Set_Priority_By_Lecturers();
             Set_Priority_By_Lecture_Times();
             Set_Priority_By_Halls_Height_Preference();
 
-            Available_Selecions.Clear();
-            All_Selections.ForEach(subject => {
-                if (subject.Priority > 0) Available_Selecions.Add(subject);
+            AvailableSelecions.Clear();
+            AllSelections.ForEach(subject => {
+                if (subject.Priority > 0) AvailableSelecions.Add(subject);
             });
+            //AllSelections.Sort()
         }
 
         public bool Add_Preferred_Selection(SubjectSelection selection)
@@ -111,10 +112,10 @@ namespace TimetableData.Controller
             Generator.Remove_Preferred_Selection(selection);
         }
 
-        public List<List<SubjectSelection>> Get_Optimized_Selections()
+        public List<List<SubjectSelection>> GetOptimizedSelections()
         {
-            Calculate_Priority();
-            Generator.Available_Selections = Available_Selecions;
+            CalculatePriority();
+            Generator.AvailableSelections = AvailableSelecions;
             return Generator.Get_Optimized_Selections();
         }
     }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SubjectCombobox = new System.Windows.Forms.ComboBox();
             this.SubjectAcceptButton = new System.Windows.Forms.Button();
@@ -40,6 +41,10 @@
             this.HallEditButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.LecturersGridView = new System.Windows.Forms.DataGridView();
+            this.LecturersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.newLecturerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editLecturerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteLecturerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FilterLabel = new System.Windows.Forms.Label();
             this.LecturerFilteringTextbox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,6 +56,7 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LecturersGridView)).BeginInit();
+            this.LecturersContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -66,6 +72,8 @@
             // 
             // SubjectCombobox
             // 
+            this.SubjectCombobox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SubjectCombobox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.SubjectCombobox.FormattingEnabled = true;
             this.SubjectCombobox.Location = new System.Drawing.Point(6, 14);
             this.SubjectCombobox.Name = "SubjectCombobox";
@@ -123,6 +131,8 @@
             // 
             // HallCombobox
             // 
+            this.HallCombobox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.HallCombobox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.HallCombobox.FormattingEnabled = true;
             this.HallCombobox.Location = new System.Drawing.Point(6, 14);
             this.HallCombobox.Name = "HallCombobox";
@@ -163,11 +173,42 @@
             // LecturersGridView
             // 
             this.LecturersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.LecturersGridView.ContextMenuStrip = this.LecturersContextMenuStrip;
             this.LecturersGridView.Location = new System.Drawing.Point(11, 35);
             this.LecturersGridView.Name = "LecturersGridView";
             this.LecturersGridView.RowHeadersVisible = false;
             this.LecturersGridView.Size = new System.Drawing.Size(148, 133);
             this.LecturersGridView.TabIndex = 8;
+            // 
+            // LecturersContextMenuStrip
+            // 
+            this.LecturersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newLecturerToolStripMenuItem,
+            this.editLecturerToolStripMenuItem,
+            this.deleteLecturerToolStripMenuItem});
+            this.LecturersContextMenuStrip.Name = "LecturersContextMenuStrip";
+            this.LecturersContextMenuStrip.Size = new System.Drawing.Size(108, 70);
+            // 
+            // newLecturerToolStripMenuItem
+            // 
+            this.newLecturerToolStripMenuItem.Name = "newLecturerToolStripMenuItem";
+            this.newLecturerToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.newLecturerToolStripMenuItem.Text = "New";
+            this.newLecturerToolStripMenuItem.Click += new System.EventHandler(this.newLecturerToolStripMenuItem_Click);
+            // 
+            // editLecturerToolStripMenuItem
+            // 
+            this.editLecturerToolStripMenuItem.Name = "editLecturerToolStripMenuItem";
+            this.editLecturerToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.editLecturerToolStripMenuItem.Text = "Edit";
+            this.editLecturerToolStripMenuItem.Click += new System.EventHandler(this.editLecturerToolStripMenuItem_Click);
+            // 
+            // deleteLecturerToolStripMenuItem
+            // 
+            this.deleteLecturerToolStripMenuItem.Name = "deleteLecturerToolStripMenuItem";
+            this.deleteLecturerToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteLecturerToolStripMenuItem.Text = "Delete";
+            this.deleteLecturerToolStripMenuItem.Click += new System.EventHandler(this.deleteLecturerToolStripMenuItem_Click);
             // 
             // FilterLabel
             // 
@@ -184,6 +225,7 @@
             this.LecturerFilteringTextbox.Name = "LecturerFilteringTextbox";
             this.LecturerFilteringTextbox.Size = new System.Drawing.Size(116, 20);
             this.LecturerFilteringTextbox.TabIndex = 7;
+            this.LecturerFilteringTextbox.TextChanged += new System.EventHandler(this.LecturerFilteringTextbox_TextChanged);
             // 
             // label3
             // 
@@ -202,6 +244,7 @@
             this.SelectionAcceptButton.TabIndex = 12;
             this.SelectionAcceptButton.Text = "Accept";
             this.SelectionAcceptButton.UseVisualStyleBackColor = true;
+            this.SelectionAcceptButton.Click += new System.EventHandler(this.SelectionAcceptButton_Click);
             // 
             // SelectionDeclineButton
             // 
@@ -211,6 +254,7 @@
             this.SelectionDeclineButton.TabIndex = 11;
             this.SelectionDeclineButton.Text = "Decline";
             this.SelectionDeclineButton.UseVisualStyleBackColor = true;
+            this.SelectionDeclineButton.Click += new System.EventHandler(this.SelectionDeclineButton_Click);
             // 
             // SelectionApplyButton
             // 
@@ -220,6 +264,7 @@
             this.SelectionApplyButton.TabIndex = 10;
             this.SelectionApplyButton.Text = "Apply";
             this.SelectionApplyButton.UseVisualStyleBackColor = true;
+            this.SelectionApplyButton.Click += new System.EventHandler(this.SelectionApplyButton_Click);
             // 
             // TimetableControl
             // 
@@ -246,11 +291,13 @@
             this.Controls.Add(this.TimetableControl);
             this.Name = "SelectionForm";
             this.Text = "SelectionForm";
+            this.Load += new System.EventHandler(this.SelectionForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LecturersGridView)).EndInit();
+            this.LecturersContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,5 +324,9 @@
         private System.Windows.Forms.Button SelectionAcceptButton;
         private System.Windows.Forms.Button SelectionDeclineButton;
         private System.Windows.Forms.Button SelectionApplyButton;
+        private System.Windows.Forms.ContextMenuStrip LecturersContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem newLecturerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editLecturerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteLecturerToolStripMenuItem;
     }
 }

@@ -14,8 +14,17 @@ namespace TimetableData
     {
         static void Main(string[] args)
         {
-            Selection_Manipulator sm = new Selection_Manipulator();
-            
+            LectureTimeController controller = new LectureTimeController();
+            LectureTime time;
+            for(int i = 0; i <= 10; ++i)
+            {
+                time = controller.Get(i);
+                if(time != null)
+                {
+                    Console.WriteLine(time.Time);
+                }
+            }
+                
             Console.ReadKey();
         }
     }

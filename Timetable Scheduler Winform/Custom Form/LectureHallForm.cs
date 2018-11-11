@@ -119,6 +119,8 @@ namespace TimetableSchedulerWinform.CustomForm
             else if(CustomMessages.YesNoDelete(this))
             {
                 Deleted = controller.Delete(hall);
+                if (!Deleted)
+                    CustomMessages.DeleteFail(this, "lecture hall");
                 Close();
             }
         }

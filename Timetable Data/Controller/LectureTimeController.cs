@@ -5,28 +5,28 @@ using System.Collections.Generic;
 
 namespace TimetableData.Controller
 {
-    class Lecture_Time_Controller : BaseController<LectureTime>
+    public class LectureTimeController : BaseController<LectureTime>
     {
         public override long Insert(LectureTime t)
         {
-            return Exists_In_Table("Lecture_Time", "Time", t.Time)
-                ? connection.QueryFirst("SELECT Id FROM Lecture_Time" +
+            return Exists_In_Table("LectureTime", "Time", t.Time)
+                ? connection.QueryFirst("SELECT Id FROM LectureTime " +
                     "WHERE Time = @Time", new { t.Time }).Id
                 : base.Insert(t);
         }
 
         public override bool Delete(LectureTime t)
         {
-            return Exists_In_Table("Selection_Time", "Lecture_Time_Id", t.Id.ToString())
+            return Exists_In_Table("Selection_Time", "LectureTimeId", t.Id.ToString())
                 ? false : connection.Delete(t);
         }
 
         public List<LectureTime> GetBySelection(SubjectSelection selection)
         {
             return connection.Query<LectureTime>(
-                "SELECT * FROM Lecture_Time WHERE Id IN " +
-                "(SELECT Lecture_Time_Id FROM Selection_Time " +
-                "WHERE Selection_Id = @Selection_Id)",
+                "SELECT Id, Time FROM LectureTime WHERE Id IN " +
+                "(SELECT LectureTimeId FROM Selection_Time " +
+                "WHERE SelectionId = @Id)",
                 new { selection.Id })
                 .AsList();
         }

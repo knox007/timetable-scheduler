@@ -18,6 +18,15 @@ namespace TimetableSchedulerWinform.CustomForm
             InitializeComponent();
             InitializeSubjects();
             InitializeHalls();
+            InitializeLecturers();
+
+            InitializeSelection();
+        }
+
+        private void SelectionForm_Load(object sender, EventArgs e)
+        {
+            //If I try to put it somewhere else, it will not work.
+            LoadSelectedLecturers();
         }
     }
 }

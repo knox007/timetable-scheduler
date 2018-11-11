@@ -20,5 +20,11 @@ namespace TimetableData.Controller
                 "SELECT * FROM LectureHall WHERE Id = @Id",
                 new { selection.HallId });
         }
+
+        public bool DeleteAll()
+        {
+            return new SubjectSelectionController().DeleteAll()
+                && connection.ExecuteScalar<bool>("DELETE FROM LectureHall");
+        }
     }
 }

@@ -4,12 +4,12 @@ using TimetableData.Controller;
 
 namespace TimetableData.Model
 {
-    [Table("SelectionLecturer")]
+    [Table("Selection_Lecturer")]
     public class SelectionLecturer
     {
         public int Id { get; set; }
-        public int Selection_Id { get; set; }
-        public int Lecturer_Id { get; set; }
+        public int SelectionId { get; set; }
+        public int LecturerId { get; set; }
         
     }
 }

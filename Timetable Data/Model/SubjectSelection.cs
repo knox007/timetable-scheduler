@@ -43,7 +43,7 @@ namespace TimetableData.Model
         {
             get
             {
-                return new Lecture_Time_Controller().GetBySelection(this);
+                return new LectureTimeController().GetBySelection(this);
             }
         }
 
@@ -58,6 +58,13 @@ namespace TimetableData.Model
         {
             SubjectId = subject_id;
             HallId = hall_id;
+        }
+
+        public SubjectSelection(SubjectSelection selection)
+        {
+            Id = selection.Id;
+            SubjectId = selection.Id;
+            HallId = selection.Id;
         }
 
         public static string ListToString<T>(List<T> list)

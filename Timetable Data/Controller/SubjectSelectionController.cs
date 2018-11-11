@@ -10,16 +10,16 @@ namespace TimetableData.Controller
     {
         public override bool Delete(SubjectSelection t)
         {
-            return (Exists_In_Table("SelectionLecturer", "SelectionId", t.Id.ToString())
-                || Exists_In_Table("SelectionTime", "SelectionId", t.Id.ToString()))
-                ? false : Delete(t);
+            new Selection_LecturerController().DeleteBySelection(t.Id);
+            new Selection_TimeController().DeleteBySelection(t.Id);
+            return base.Delete(t);
         }
 
         public bool AddLecturer(ref SubjectSelection ss, Lecturer l)
         {
             return connection.Insert<SelectionLecturer>(
                 new SelectionLecturer()
-                    { Lecturer_Id = l.Id, Selection_Id = ss.Id }
+                    { LecturerId = l.Id, SelectionId = ss.Id }
             ) > 0; //insert success
         }
 
@@ -27,7 +27,7 @@ namespace TimetableData.Controller
         {
             return connection.Insert<Selection_Time>(
                 new Selection_Time()
-                { Lecture_Time_Id = lt.Id, Selection_Id = ss.Id }
+                { LectureTimeId = lt.Id, SelectionId = ss.Id }
             ) > 0; //insert success
         }
 
@@ -35,13 +35,20 @@ namespace TimetableData.Controller
         {
             return connection.Delete<SelectionLecturer>(
                 new SelectionLecturer()
-                    { Lecturer_Id = l.Id, Selection_Id = ss.Id }
+                    { LecturerId = l.Id, SelectionId = ss.Id }
             ); //insert success
         }
 
         public bool RemoveTime(ref SubjectSelection selection, LectureTime time)
         {
             throw new System.Exception("Not implementated");
+        }
+
+        public bool DeleteAll()
+        {
+            return new Selection_TimeController().DeleteAll() //Foreign keys?
+                && new Selection_LecturerController().DeleteAll()
+                && connection.ExecuteScalar<bool>("DELETE FROM SubjectSelection");
         }
     }
 }

@@ -17,23 +17,31 @@ namespace TimetableData.Controller
 
         public override bool Delete(Lecturer t)
         {
-            /*return Exists_In_Table("Selection_Lecturer", "Lecturer_Id", t.Id.ToString())
-                ? false : connection.Delete(t);*/
-            
-            return connection.ExecuteScalar<bool>(
+            return base.Delete(t) || connection.ExecuteScalar<bool>(
                 "DELETE FROM Selection_Lecturer WHERE " +
-                "Lecturer_Id = @Lecturer_Id", new { t.Id })
-                && base.Delete(t);
+                "LecturerId = @Id", new { t.Id });
+
+            /*return connection.ExecuteScalar<bool>(
+                "DELETE FROM Selection_Lecturer WHERE " +
+                "LecturerId = @Id", new { t.Id })
+                && base.Delete(t);*/
         }
 
         public List<Lecturer> GetBySelection(SubjectSelection selection)
         {
-            return connection.Query<Lecturer>("SELECT * FROM Lecturer " +
-                "WHERE Lecturer_Id IN " +
-                "(SELECT Lecturer_Id FROM Selection_Lecturer " +
-                "WHERE Selection_Id = @Selection_Id)",
+            return connection.Query<Lecturer>(
+                "SELECT Id, Name FROM Lecturer " +
+                "WHERE Id IN " +
+                "(SELECT LecturerId FROM Selection_Lecturer " +
+                "WHERE SelectionId = @Id)",
                 new { selection.Id })
                 .AsList();
+        }
+
+        public bool DeleteAll()
+        {
+            return new Selection_LecturerController().DeleteAll()
+                && connection.ExecuteScalar<bool>("DELETE FROM Lecturer");
         }
     }
 }

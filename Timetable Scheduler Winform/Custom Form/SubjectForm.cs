@@ -88,6 +88,8 @@ namespace TimetableSchedulerWinform.CustomForm
             else if(CustomMessages.YesNoDelete(this))
             {
                 Deleted = controller.Delete(subject);
+                if (!Deleted)
+                    CustomMessages.DeleteFail(this, "subject");
                 Close();
             }
         }
