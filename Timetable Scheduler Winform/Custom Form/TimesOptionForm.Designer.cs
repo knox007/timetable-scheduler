@@ -37,6 +37,7 @@
             this.OkayButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.TimetableControl = new TimetableSchedulerWinform.TableCustomControl();
+            this.ResetButton = new System.Windows.Forms.Button();
             this.TimesContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@
             this.resetSelectedTimesToolStripMenuItem,
             this.resetAllToolStripMenuItem});
             this.TimesContextMenuStrip.Name = "TimesContextMenuStrip";
-            this.TimesContextMenuStrip.Size = new System.Drawing.Size(181, 114);
+            this.TimesContextMenuStrip.Size = new System.Drawing.Size(181, 92);
             // 
             // setPreferredTimesToolStripMenuItem
             // 
@@ -86,15 +87,17 @@
             this.OkayButton.TabIndex = 6;
             this.OkayButton.Text = "OK";
             this.OkayButton.UseVisualStyleBackColor = true;
+            this.OkayButton.Click += new System.EventHandler(this.OkayButton_Click);
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(489, 364);
+            this.CancelButton.Location = new System.Drawing.Point(408, 364);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 7;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // TimetableControl
             // 
@@ -105,11 +108,22 @@
             this.TimetableControl.Size = new System.Drawing.Size(633, 346);
             this.TimetableControl.TabIndex = 2;
             // 
+            // ResetButton
+            // 
+            this.ResetButton.Location = new System.Drawing.Point(489, 364);
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.Size = new System.Drawing.Size(75, 23);
+            this.ResetButton.TabIndex = 8;
+            this.ResetButton.Text = "Reset";
+            this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
+            // 
             // TimesOptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(660, 398);
+            this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.OkayButton);
             this.Controls.Add(this.TimetableControl);
@@ -130,5 +144,6 @@
         private System.Windows.Forms.ToolStripMenuItem setDeniedTimesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetSelectedTimesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetAllToolStripMenuItem;
+        private System.Windows.Forms.Button ResetButton;
     }
 }

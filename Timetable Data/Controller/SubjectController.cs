@@ -27,6 +27,11 @@ namespace TimetableData.Controller
                 && connection.Delete(t);*/
         }
 
-
+        public bool DeleteAll()
+        {
+            return connection.ExecuteScalar<bool>(
+                "DELETE FROM [Subject]"
+            );
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace TimetableData.Manipulator
         {
             Preferred_Selections_Id = new List<int>();
             Optimized_Selections = new List<List<SubjectSelection>>();
-            table = new int[16, 7];
+            table = new int[7, 17];
         }
         public SelectionGenerator(List<SubjectSelection> Available_Selections)
             : this()
@@ -101,6 +101,7 @@ namespace TimetableData.Manipulator
         {
             Optimized_Selections.Clear();
             Array.Clear(table, 0, table.Length);
+            //table = new int[16, 7];
 
             Grouped_Selections = AvailableSelections
                 .GroupBy(s => s.Subject.Id)

@@ -23,8 +23,7 @@ namespace TimetableData.Controller
 
         public bool DeleteAll()
         {
-            return new SubjectSelectionController().DeleteAll()
-                && connection.ExecuteScalar<bool>("DELETE FROM LectureHall");
+            return connection.ExecuteScalar<bool>("DELETE FROM LectureHall");
         }
     }
 }

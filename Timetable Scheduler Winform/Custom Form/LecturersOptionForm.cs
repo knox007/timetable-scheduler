@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using FastMember;
 using TimetableData.Controller;
 using TimetableData.Model;
+using TimetableSchedulerWinform.CustomControl;
 
 namespace TimetableSchedulerWinform.CustomForm
 {
@@ -17,7 +18,7 @@ namespace TimetableSchedulerWinform.CustomForm
     {
         DataTable preferred_lecturers,
             denied_lecturers;
-        HashSet<int> preferred_lecturers_id,
+        public HashSet<int> preferred_lecturers_id,
             denied_lecturers_id;
 
         public LecturersOptionForm()
@@ -154,9 +155,7 @@ namespace TimetableSchedulerWinform.CustomForm
             else if(preferred_lecturers_id.Count > 0 
                 || denied_lecturers_id.Count > 0)
             {
-                MessageBox.Show(this, "The preferred and denied lecturers has been saved.", 
-                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information,
-                    MessageBoxDefaultButton.Button1);
+                CustomMessages.OptionsSaved(this);
                 Hide();
             }
             else

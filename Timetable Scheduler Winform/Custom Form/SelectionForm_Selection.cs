@@ -116,10 +116,7 @@ namespace TimetableSchedulerWinform.CustomForm
         private void SelectionApplyButton_Click(object sender, EventArgs e)
         {
             TimetableControl.ResetLectureTimes();
-            TimetableControl.AddSubjectAndTimes(
-                (Subject)SubjectCombobox.SelectedItem,
-                TimetableControl.GetLectureTimes(TimetableControl.IsSelectedCell)
-            );
+            TimetableControl.AddSubjectToSelectedCells((Subject)SubjectCombobox.SelectedItem);
         }
 
         private void SelectionAcceptButton_Click(object sender, EventArgs e)
@@ -133,6 +130,10 @@ namespace TimetableSchedulerWinform.CustomForm
                 
             if(New)
             {
+                //databinding by hand
+                selection.HallId = Convert.ToInt32(HallCombobox.SelectedValue);
+                selection.SubjectId = Convert.ToInt32(SubjectCombobox.SelectedValue);
+
                 int selection_id = (int)controller.Insert(selection);
                 selection.Id = selection_id;
                 if (selection_id > 0)
@@ -162,7 +163,7 @@ namespace TimetableSchedulerWinform.CustomForm
 
                     SetSelection(selection);
                     CustomMessages.Updated(this, "selection");
-                    TimetableControl.ResetLectureTimes();
+                    //TimetableControl.ResetLectureTimes();
                     Updated = true;
                 }
             }
@@ -170,14 +171,19 @@ namespace TimetableSchedulerWinform.CustomForm
 
         private void SelectionDeclineButton_Click(object sender, EventArgs e)
         {
-            if(New)
+            if(New) //reset
             {
+                //reset
                 SetSelection(new SubjectSelection());
+
+                //reset all lecturers
                 for (int i = 0; i < LecturersGridView.Rows.Count; ++i)
                     if (LecturersGridView["Select", i].Value != null
                         && (bool)LecturersGridView["Select", i].Value)
                         LecturersGridView["Select", i].Value = false;
                 checked_lecturers_id.Clear();
+
+                TimetableControl.ResetLectureTimes();
             }
             else if(CustomMessages.YesNoDelete(this))
             {

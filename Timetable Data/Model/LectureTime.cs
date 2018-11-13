@@ -66,16 +66,23 @@ namespace TimetableData.Model
 
         private bool Available(int period)
         {
-            return start_period < period && period < end_period;
+            return start_period <= period && period <= end_period;
         }
-        public bool Intersect(LectureTime time)
+        /*public bool Intersect(LectureTime time)
         {
             return Available(time.start_period) || Available(time.end_period);
-        }
+        }*/
         public static bool IsSubset(LectureTime container, LectureTime to_be_contained)
         { //timeB is subset of timeA?
             return container.Available(to_be_contained.start_period) 
                 && container.Available(to_be_contained.end_period);
+        }
+
+        public static bool Intersect(LectureTime time_1, LectureTime time_2)
+        {
+            return time_1.Day == time_2.Day
+                && (time_1.Available(time_2.Start_Period) || time_1.Available(time_2.End_Period)
+                || time_2.Available(time_1.Start_Period) || time_2.Available(time_1.End_Period));
         }
 
         public override string ToString()

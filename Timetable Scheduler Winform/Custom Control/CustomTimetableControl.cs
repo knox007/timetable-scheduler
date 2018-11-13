@@ -13,7 +13,7 @@ namespace TimetableSchedulerWinform
 {
     public partial class TableCustomControl : UserControl
     {
-        public void Init_Table(DataGridView Table)
+        public void InitializeTable(DataGridView Table)
         {
             foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
                 Table.Columns.Add(new DataGridViewColumn()
@@ -50,11 +50,19 @@ namespace TimetableSchedulerWinform
         public TableCustomControl()
         {
             InitializeComponent();
-            Init_Table(Table);
+            InitializeTable(Table);
             //AutoSize = true;
             Width = Table.Width + 4;
             Height = Table.Height + 4;
             //Dock = DockStyle.Fill;
+        }
+
+        public void AddSubjectToSelectedCells(Subject subject)
+        {
+            foreach (DataGridViewCell cell in Table.SelectedCells)
+                cell.Value = subject.Codename;
+
+            //Table.ClearSelection();
         }
 
         public void AddSubjectAndTimes(Subject subject, List<LectureTime> times)
@@ -62,6 +70,8 @@ namespace TimetableSchedulerWinform
             foreach (LectureTime time in times)
                 for (int i = time.Start_Period; i <= time.End_Period; ++i)
                     Table[(int)time.Day, i - 1].Value = subject.Codename;
+            
+            Table.ClearSelection();
         }
 
         public void AddSubjectSelection(SubjectSelection selection)
@@ -69,6 +79,7 @@ namespace TimetableSchedulerWinform
             foreach (LectureTime time in selection.Times)
                 for (int i = time.Start_Period; i <= time.End_Period; ++i)
                     Table[(int)time.Day, i - 1].Value = selection.Subject.Codename;
+            Table.ClearSelection();
         }
 
         public void RemoveSubjectSelection(SubjectSelection selection)
@@ -119,6 +130,7 @@ namespace TimetableSchedulerWinform
                         Table[i, j].Style.BackColor = Color.White;
                     Table[i, j].Value = "";
                 }
+            //Table.ClearSelection();
         }
 
         public bool IsSelectedCell(DataGridViewCell cell)
@@ -148,7 +160,7 @@ namespace TimetableSchedulerWinform
                     if (CellCheckingCondition(Table[i, j]))
                     {
                         for (k = j; k < Table.Rows.Count; ++k)
-                            if (!CellCheckingCondition(Table[i, j]))
+                            if (!CellCheckingCondition(Table[i, k]))
                                 break;
                         Times.Add(new LectureTime((DayOfWeek)i, j + 1, k));
                         j = k + 1;

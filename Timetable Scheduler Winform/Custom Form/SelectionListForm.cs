@@ -91,7 +91,7 @@ namespace TimetableSchedulerWinform.CustomForm
         {
             SelectionForm form = new SelectionForm();
             form.SetSelection(selection);
-            form.Show(this);
+            form.Show();
 
             form.FormClosed += SelectionForm_Closed;
         }

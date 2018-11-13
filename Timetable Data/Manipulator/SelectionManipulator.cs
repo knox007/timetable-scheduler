@@ -52,29 +52,34 @@ namespace TimetableData.Manipulator
         private void SetPriorityByLectureTimes()
         {
             foreach (SubjectSelection selection in AllSelections)
-                foreach (LectureTime time in selection.Times)
-                {
-                    foreach (LectureTime denied_time in Denied_Lecture_Times)
-                        if (time.Intersect(denied_time))
-                            selection.Priority = 0;
-                    foreach (LectureTime preferred_time in Preferred_Lecture_Times)
-                        if (time.Intersect(preferred_time) && selection.Priority > 0)
-                            selection.Priority += 5;
-                }
+                if(selection.Priority > 0)
+                    foreach (LectureTime time in selection.Times)
+                    {
+                        foreach (LectureTime denied_time in Denied_Lecture_Times)
+                            if (LectureTime.Intersect(time, denied_time))
+                            {
+                                selection.Priority = 0;
+                                break;
+                            }
+                        if (selection.Priority == 0) break;
+
+                        foreach (LectureTime preferred_time in Preferred_Lecture_Times)
+                            if (LectureTime.IsSubset(preferred_time, time))
+                                selection.Priority += 10;
+                    }
         }
 
         private void SetPriorityByLecturers()
         {
             foreach (SubjectSelection selection in AllSelections)
-                foreach (Lecturer lecturer in selection.Lecturers)
-                {
-                    foreach (Lecturer denied_lecturer in Denied_Lecturers)
-                        if (lecturer == denied_lecturer)
+                if(selection.Priority > 0)
+                    foreach (Lecturer lecturer in selection.Lecturers)
+                    {
+                        if (Denied_Lecturers.Contains(lecturer))
                             selection.Priority = 0;
-                    foreach (Lecturer preferred_lecturer in Preferred_Lecturers)
-                        if (lecturer == preferred_lecturer)
-                            selection.Priority = 0;
-                }
+                        else if (Preferred_Lecturers.Contains(lecturer))
+                            selection.Priority += 5;
+                    }
         }
 
         private void SetPriorityBySubject()

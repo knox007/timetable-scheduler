@@ -52,15 +52,19 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubjectFilteringTextbox = new System.Windows.Forms.TextBox();
             this.FilterLabel = new System.Windows.Forms.Label();
-            this.CompulsorySubjectsGridView = new System.Windows.Forms.DataGridView();
+            this.SubjectsGridView = new System.Windows.Forms.DataGridView();
             this.GenerateButton = new System.Windows.Forms.Button();
             this.PreviousButton = new System.Windows.Forms.Button();
             this.NextButton = new System.Windows.Forms.Button();
             this.RefreshButton = new System.Windows.Forms.Button();
-            this.SelectionNumberingLabel = new System.Windows.Forms.Label();
+            this.SelectAllButton = new System.Windows.Forms.Button();
             this.TimetableControl = new TimetableSchedulerWinform.TableCustomControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TotalSelectionTextbox = new System.Windows.Forms.TextBox();
+            this.CurrentSelectionTextbox = new System.Windows.Forms.TextBox();
             this._MainMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CompulsorySubjectsGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SubjectsGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // _MainMenuStrip
@@ -72,7 +76,7 @@
             this.helpToolStripMenuItem});
             this._MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._MainMenuStrip.Name = "_MainMenuStrip";
-            this._MainMenuStrip.Size = new System.Drawing.Size(816, 24);
+            this._MainMenuStrip.Size = new System.Drawing.Size(842, 24);
             this._MainMenuStrip.TabIndex = 0;
             this._MainMenuStrip.Text = "menuStrip1";
             // 
@@ -252,18 +256,18 @@
             this.FilterLabel.TabIndex = 4;
             this.FilterLabel.Text = "Filter";
             // 
-            // CompulsorySubjectsGridView
+            // SubjectsGridView
             // 
-            this.CompulsorySubjectsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CompulsorySubjectsGridView.Location = new System.Drawing.Point(654, 54);
-            this.CompulsorySubjectsGridView.Name = "CompulsorySubjectsGridView";
-            this.CompulsorySubjectsGridView.RowHeadersVisible = false;
-            this.CompulsorySubjectsGridView.Size = new System.Drawing.Size(148, 319);
-            this.CompulsorySubjectsGridView.TabIndex = 5;
+            this.SubjectsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SubjectsGridView.Location = new System.Drawing.Point(654, 54);
+            this.SubjectsGridView.Name = "SubjectsGridView";
+            this.SubjectsGridView.RowHeadersVisible = false;
+            this.SubjectsGridView.Size = new System.Drawing.Size(176, 319);
+            this.SubjectsGridView.TabIndex = 5;
             // 
             // GenerateButton
             // 
-            this.GenerateButton.Location = new System.Drawing.Point(316, 379);
+            this.GenerateButton.Location = new System.Drawing.Point(408, 379);
             this.GenerateButton.Name = "GenerateButton";
             this.GenerateButton.Size = new System.Drawing.Size(75, 23);
             this.GenerateButton.TabIndex = 6;
@@ -273,7 +277,7 @@
             // 
             // PreviousButton
             // 
-            this.PreviousButton.Location = new System.Drawing.Point(397, 379);
+            this.PreviousButton.Location = new System.Drawing.Point(489, 379);
             this.PreviousButton.Name = "PreviousButton";
             this.PreviousButton.Size = new System.Drawing.Size(75, 23);
             this.PreviousButton.TabIndex = 7;
@@ -293,21 +297,23 @@
             // 
             // RefreshButton
             // 
-            this.RefreshButton.Location = new System.Drawing.Point(727, 379);
+            this.RefreshButton.Location = new System.Drawing.Point(755, 379);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(75, 23);
             this.RefreshButton.TabIndex = 9;
             this.RefreshButton.Text = "Refresh";
             this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
-            // SelectionNumberingLabel
+            // SelectAllButton
             // 
-            this.SelectionNumberingLabel.AutoSize = true;
-            this.SelectionNumberingLabel.Location = new System.Drawing.Point(483, 384);
-            this.SelectionNumberingLabel.Name = "SelectionNumberingLabel";
-            this.SelectionNumberingLabel.Size = new System.Drawing.Size(71, 13);
-            this.SelectionNumberingLabel.TabIndex = 10;
-            this.SelectionNumberingLabel.Text = "Selection 0/0";
+            this.SelectAllButton.Location = new System.Drawing.Point(674, 379);
+            this.SelectAllButton.Name = "SelectAllButton";
+            this.SelectAllButton.Size = new System.Drawing.Size(75, 23);
+            this.SelectAllButton.TabIndex = 11;
+            this.SelectAllButton.Text = "Select All";
+            this.SelectAllButton.UseVisualStyleBackColor = true;
+            this.SelectAllButton.Click += new System.EventHandler(this.SelectAllButton_Click);
             // 
             // TimetableControl
             // 
@@ -317,17 +323,57 @@
             this.TimetableControl.Size = new System.Drawing.Size(633, 346);
             this.TimetableControl.TabIndex = 1;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 384);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Current selection";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(150, 384);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(12, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "/";
+            // 
+            // TotalSelectionTextbox
+            // 
+            this.TotalSelectionTextbox.Location = new System.Drawing.Point(168, 381);
+            this.TotalSelectionTextbox.Name = "TotalSelectionTextbox";
+            this.TotalSelectionTextbox.Size = new System.Drawing.Size(40, 20);
+            this.TotalSelectionTextbox.TabIndex = 15;
+            this.TotalSelectionTextbox.Text = "0";
+            // 
+            // CurrentSelectionTextbox
+            // 
+            this.CurrentSelectionTextbox.Location = new System.Drawing.Point(104, 381);
+            this.CurrentSelectionTextbox.Name = "CurrentSelectionTextbox";
+            this.CurrentSelectionTextbox.Size = new System.Drawing.Size(40, 20);
+            this.CurrentSelectionTextbox.TabIndex = 16;
+            this.CurrentSelectionTextbox.Text = "0";
+            this.CurrentSelectionTextbox.TextChanged += new System.EventHandler(this.CurrentSelectionTextbox_TextChanged);
+            this.CurrentSelectionTextbox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CurrentSelectionTextbox_KeyUp);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(816, 414);
-            this.Controls.Add(this.SelectionNumberingLabel);
+            this.ClientSize = new System.Drawing.Size(842, 414);
+            this.Controls.Add(this.CurrentSelectionTextbox);
+            this.Controls.Add(this.TotalSelectionTextbox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.SelectAllButton);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.PreviousButton);
             this.Controls.Add(this.GenerateButton);
-            this.Controls.Add(this.CompulsorySubjectsGridView);
+            this.Controls.Add(this.SubjectsGridView);
             this.Controls.Add(this.FilterLabel);
             this.Controls.Add(this.SubjectFilteringTextbox);
             this.Controls.Add(this.TimetableControl);
@@ -336,7 +382,7 @@
             this.Text = "Timetable Scheduler";
             this._MainMenuStrip.ResumeLayout(false);
             this._MainMenuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CompulsorySubjectsGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SubjectsGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,7 +410,7 @@
         private System.Windows.Forms.ToolStripMenuItem newSelectionToolStripMenuItem;
         private System.Windows.Forms.TextBox SubjectFilteringTextbox;
         private System.Windows.Forms.Label FilterLabel;
-        private System.Windows.Forms.DataGridView CompulsorySubjectsGridView;
+        private System.Windows.Forms.DataGridView SubjectsGridView;
         private System.Windows.Forms.Button GenerateButton;
         private System.Windows.Forms.Button PreviousButton;
         private System.Windows.Forms.Button NextButton;
@@ -375,7 +421,11 @@
         private System.Windows.Forms.ToolStripMenuItem resetHallsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetSubjectsToolStripMenuItem;
-        private System.Windows.Forms.Label SelectionNumberingLabel;
+        private System.Windows.Forms.Button SelectAllButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox TotalSelectionTextbox;
+        private System.Windows.Forms.TextBox CurrentSelectionTextbox;
     }
 }
 

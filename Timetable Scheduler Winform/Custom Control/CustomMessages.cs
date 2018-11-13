@@ -19,10 +19,10 @@ namespace TimetableSchedulerWinform.CustomControl
 
         public static bool YesNoNext(IWin32Window owner, string object_name)
         {
-            return MessageBox.Show(owner, "The " + object_name + " has been added. " +
+            return MessageBox.Show(owner, "The " + object_name + " has been created. " +
                 "Do you want to continue?", "Continue?",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2)
+                MessageBoxDefaultButton.Button1)
                 == DialogResult.Yes;
         }
 
@@ -52,7 +52,7 @@ namespace TimetableSchedulerWinform.CustomControl
 
         public static bool YesNoReset(IWin32Window owner)
         {
-            return MessageBox.Show(owner, "Everything will be deleted." + Environment.NewLine 
+            return MessageBox.Show(owner, "A lot of data will be deleted." + Environment.NewLine 
                 + "Do you really want to do this?", "Reset",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button2)
@@ -86,9 +86,16 @@ namespace TimetableSchedulerWinform.CustomControl
         public static void NoSelectionAvailable(IWin32Window owner)
         {
             MessageBox.Show(owner, "No choice available with current data. " + Environment.NewLine +
-                "Maybe the subjects you have too little selection.", "No choice available",
+                "Maybe the chosen subjects have too little selection or too many subjects have been chosen.", "No choice available",
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation, 
                 MessageBoxDefaultButton.Button1);
+        }
+
+        public static void OptionsSaved(IWin32Window owner)
+        {
+            MessageBox.Show(owner, "The options have been saved!",
+                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
         }
     }
 }
